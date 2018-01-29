@@ -5,6 +5,7 @@
 
 define e = Character("Eileen")
 
+define w = Character("Will")
 
 # The game starts here.
 

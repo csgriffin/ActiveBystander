@@ -3,9 +3,17 @@
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
 
-define e = Character("Heyo")
-
-define w = Character("Will")
+declare MC = Character("Shulk")
+declare NR = Character("Narration")
+declare F1 = Character("Fiora")
+declare F2 = Character("Reyn")
+declare F3 = Character("Sharla")
+declare F4 = Character("Melia")
+declare VC = Character("Riki")
+declare S1 = Character("Dunban")
+declare S2 = Character("Dickson")
+declare CH = Character("Student Chatter")
+declare BULLY = Character("Mumkar")
 
 # The game starts here.
 

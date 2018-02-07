@@ -19,8 +19,9 @@ define TEACHER = Character("Teacher")
 define BULLY = Character("Bully")
 
 # The game starts here.
-
 label start:
+
+    jump development
 
     play music "Title Theme 1.wav"
     scene bedroom
@@ -184,6 +185,10 @@ label after_summer:
     "I'm sure the track team would be fun with him at my side."
     
     hide Jake
+
+    label development:
+            "SKIPPED!"
+
     show Fiora
     
     F3 "Speaking of speed, have you guys noticed that this day feels like anything but speedy?"
@@ -191,6 +196,55 @@ label after_summer:
     F3 "I just want to get home and relax in bed with some Jane Austen books. "
     
     "Jane Austen again? I swear, Fiora reads one of Jane Austen's books literally every day. She's probably the most voracious reader in the whole world!"
+
+    hide Fiora
+    show Joseline
+
+
+
+    menu:
+         F1 "I was having a great day with classes until that kid had to be so rude and take that seat. I mean he kinda seems like a jerk to me don’t you think? Who just sits and doesn’t move when asked?"
+
+         "Maybe you are exaggerating a little…":
+
+             MC "Maybe you are exaggerating a little…"
+             F1 "ppfh. I mean he did move eventually I guess."
+
+         "You’re right, what a jerk.":
+
+             MC "You’re right, what a jerk."
+             F1 "Ya, you know what I’m talking about."
+
+         "You were kind of a jerk to him.":
+
+             MC "You were kind of a jerk to him."
+             F1 "You gonna come out and say I AM THE JERK? I thought you were supposed to be my friend, not some little weasel."
+
+
+    hide Fiora
+    show Matt
+
+    F2 "My day has been nothing but boring, the classes haven’t even shifted into 2nd gear yet. All we get are teachers who explain rules and then give a dumb icebreaker even though I know half the kids. I can’t wait to get home to the car to tweak a few things though."
+
+    hide Matt
+    show Fiora
+
+    F1 "English class was interesting, but when the teacher told us what books we were going to be reading I had already read every single one. Guess my homework is going to be more on the light side this year."
+
+    hide Fiora
+    show Jake
+
+
+    menu:
+        F4 "Not a highlight reel thats for sure. I’m glad to see you guys again but I just hate classes for the most part. Nothing much to speak of today besides that incident earlier."
+
+        "What incident?"
+            MC "What incident?"
+            F4 "That kid not moving from the seat for a while. I don’t know about you but that is the most action that has happened for me today."
+
+        "That incident with the lunch seat?"
+            MC "That incident with the lunch seat?"
+            F4 "Ya, definitely stood out from all the dull classes I had before lunch."
     
     
     

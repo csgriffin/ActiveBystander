@@ -4,9 +4,6 @@
 # name of the character.
 
 define MC = Character("Me")
-#define NR = Character("Narration")
-#       narration character unnecessary
-#       putting in dialogue w/out a character name will produce narration
 define F1 = Character("Joseline")
 define F2 = Character("Matt")
 define F3 = Character("Fiora")
@@ -18,20 +15,36 @@ define CH = Character("BGNoise")
 define TEACHER = Character("Teacher")
 define BULLY = Character("Bully")
 
+default lunchTalk = False
+default JoselineTalk = False
+default MattTalk = False
+default FioraTalk = False
+default JakeTalk = False
+default good = False
+default neutral = False
+default bad = False
+
 # The game starts here.
 label start:
 
-    jump development
+    #jump development
 
     play music "Title Theme 1.wav"
     scene bedroom
     with fade
 
-    "It's finally time to head off to the first day of high school after an exciting summer with my friends. I’m really hoping that my class is filled with my friends. The bus rounds the corner and it's off to school."
+    "It's finally time to head off to the first day of high school after an exciting summer with my friends."
+    
+    "I’m really hoping that my class is filled with my friends."
+    
+    scene black
+    with fade
+    stop music fadeout 1.0
+
+    "The bus rounds the corner and it's off to school."
 
     # SCENE CHANGE HERE - SCHOOL HALLS
     
-    stop music fadeout 1.0
     play music "School Theme.wav"
     image hallway = im.Scale("images/hallway1.png", 1920, 1080)
     scene hallway
@@ -66,7 +79,8 @@ label start:
     
     TEACHER "Everyone take a seat. Let me take attendance."
     
-    "I look around to see that four of my friends from middle shcool are in my homeroom. It looks like I scored the jackpot when it comes to homeroom placement!"
+    "I look around to see that four of my friends from middle shcool are in my homeroom."
+    "It looks like I scored the jackpot when it comes to homeroom placement!"
     
     TEACHER "Joseline?"
     image Joseline = im.Scale("images/joseline temp.png", 720, 720)
@@ -145,16 +159,32 @@ label after_summer:
     with dissolve
     F2 "Can you wave at them so they see us?"
     
-    "As I start wave, I notice Karl is sitting right next to us and is already eating his turkey sandwich."
+    image Karl = im.Scale("images/karl temp.png", 720, 720)
+    show Karl
+    with dissolve
+    "As I start to wave, I notice Karl is sitting right next to us and is already eating his turkey sandwich."
     "I must have missed him while Matt and I were talking."
     "It occurs to me that, because Karl is sitting here now, there isn't enough room for all of us to sit here."
+    hide Karl
+    with dissolve
     "Joseline is leading the rest of the group as they approach the table"
             
     show Joseline
+    with dissolve
     F1 "Oh, it looks like we're one seat short."
-    
+    stop music fadeout 1.0
+
     "She looks over at Karl."
+    show Joseline:
+        xalign 0.9
+        yalign 1.0
     
+    show Karl:
+        xalign 0.1
+        yalign 1.0
+    with dissolve
+    
+    play music "BullyTheme.wav"
     F1 "Hey, could you move so we can sit together?"
      
     "Karl looks up for a second, but then goes back to eating."
@@ -168,13 +198,18 @@ label after_summer:
     F1 "Is this SPECIFIC SPOT that important?"
     F1 "I need that spot."
     
+    hide Karl
+    with dissolve
+    stop music fadeout 1.0
     "I start to see looks coming from around the cafeteria. 
      Karl gathers his lunch in a hurry and rushes to the other end of the cafeteria,
      staring at the floor, dropping some of his turkey sandwich as he goes."
     
+    play music "School Theme.wav"
     F1 "Finally, we can sit!"
     hide Joseline
     show Jake
+    with dissolve
     
     F4 "What is up my guys? High school seems to be off to a pretty strong start for us."
     F4 "I'm planning on joining the track team and blowing away the competition with my incredible speed!"
@@ -186,65 +221,315 @@ label after_summer:
     
     hide Jake
 
-    label development:
-            "SKIPPED!"
+    #label development:
+    #        "SKIPPED!"
 
     show Fiora
+    with dissolve
     
     F3 "Speaking of speed, have you guys noticed that this day feels like anything but speedy?"
     F3 "It feels like a marathon just to get through all these rules for every class."
     F3 "I just want to get home and relax in bed with some Jane Austen books. "
     
-    "Jane Austen again? I swear, Fiora reads one of Jane Austen's books literally every day. She's probably the most voracious reader in the whole world!"
+    "Jane Austen again? I swear, Fiora reads one of Jane Austen's books literally every day."
+    "She's probably the most voracious reader in the whole world!"
 
     hide Fiora
-    show Joseline
-
-
-
+    with dissolve
+    
+    "While we eat, I decide to talk to a couple of my friends about their day so far..."
+    
     menu:
-         F1 "I was having a great day with classes until that kid had to be so rude and take that seat. I mean he kinda seems like a jerk to me don’t you think? Who just sits and doesn’t move when asked?"
+        "First I talked to..."
+        
+        "Joseline":
+            jump JoselineLunch
+            
+        "Matt":
+            jump MattLunch
+            
+        "Fiora":
+            jump FioraLunch
+            
+        "Jake":
+            jump JakeLunch
 
-         "Maybe you are exaggerating a little…":
+label JoselineLunch:
+    show Joseline with dissolve
+    F1 "I was having a great day with classes until that kid had to be so rude and take that seat."
+    F1 "I mean, he kinda seems like a jerk to me, don’t you think? Who just sits and doesn’t move when asked?"
+            
+    menu:
+        "What did I think of that situation..."
+              
+        "Maybe she was exaggerating a little...":
+            MC "I think you might have been exaggerating a little..."
+            F1 "Ppfh. I mean, he did move eventually, I guess."
+                  
+        "She's right. What a jerk!":
+            MC "You're right. What a jerk!"
+            F1 "Yeah! You know what I'm talking about!"
+                 
+        "She was kind of a jerk to him.":
+            MC "Seemed to me like YOU were the one being a jerk there."
+            F1 "You're gonna come out and call ME the jerk?! I thought you were my friend, not some little weasel."
+    hide Joseline with dissolve
+    $ JoselineTalk = True
+    if lunchTalk:
+        jump afterLunch
+    else:
+        $ lunchTalk = True
+        jump secondFriend
 
-             MC "Maybe you are exaggerating a little…"
-             F1 "ppfh. I mean he did move eventually I guess."
-
-         "You’re right, what a jerk.":
-
-             MC "You’re right, what a jerk."
-             F1 "Ya, you know what I’m talking about."
-
-         "You were kind of a jerk to him.":
-
-             MC "You were kind of a jerk to him."
-             F1 "You gonna come out and say I AM THE JERK? I thought you were supposed to be my friend, not some little weasel."
-
-
-    hide Fiora
-    show Matt
-
-    F2 "My day has been nothing but boring, the classes haven’t even shifted into 2nd gear yet. All we get are teachers who explain rules and then give a dumb icebreaker even though I know half the kids. I can’t wait to get home to the car to tweak a few things though."
-
+label MattLunch:
+    show Matt with dissolve
+    F2 "My day has been nothing but boring; the classes haven’t even shifted into 2nd gear yet."
+    F2 "All we get are teachers who explain rules and then give a dumb icebreaker, even though I know half the kids."
+    F2 "I can’t wait to get home to the car to tweak a few things though."
+    hide Matt with dissolve
+    $ MattTalk = True
+    if lunchTalk:
+        jump afterLunch
+    else:
+        $ lunchTalk = True
+        jump secondFriend
+    
+label FioraLunch:
+    show Fiora with dissolve
+    F3 "English class was interesting, but when the teacher told us what books we were going to be reading I had already read every single one."
+    F3 "Guess my homework is going to be more on the light side this year!"
+    hide Fiora with dissolve
+    $ FioraTalk = True
+    if lunchTalk:
+        jump afterLunch
+    else:
+        $ lunchTalk = True
+        jump secondFriend
+    
+label JakeLunch:
+    show Jake with dissolve
+    F4 "Not a highlight reel, thats for sure."
+    F4 "I’m glad to see you guys again, but I just hate classes for the most part."
+    F4 "Nothing much to speak of today besides that incident earlier."
+    menu:
+        "What incident?":
+            MC "What are you talking about?"
+            F4 "That kid who wouldn't move from Joseline's seat. I dunno about you, but that's the most action I've seen today."
+                    
+        "That incident with the lunch seat?":
+            MC "You mean just now with Karl?"
+            F4 "Yeah. Definitely stood out from all the dull classes I had before lunch."
+            
+    hide Jake with dissolve
+    $ JakeTalk = True
+    if lunchTalk:
+        jump afterLunch
+    else:
+        $ lunchTalk = True
+        jump secondFriend
+    
+label secondFriend:
+    if JoselineTalk:
+        menu:
+            "Next I talked to..."
+            
+            "Matt":
+                jump MattLunch
+            
+            "Fiora":
+                jump FioraLunch
+            
+            "Jake":
+                jump JakeLunch
+    
+    if MattTalk:
+        menu:
+            "Next I talked to..."
+            
+            "Joseline":
+                jump JoselineLunch
+            
+            "Fiora":
+                jump FioraLunch
+            
+            "Jake":
+                jump JakeLunch
+    
+    if FioraTalk:
+        menu:
+            "Next I talked to..."
+            
+            "Joseline":
+                jump JoselineLunch
+            
+            "Matt":
+                jump MattLunch
+                
+            "Jake":
+                jump JakeLunch
+                
+    if JakeTalk:
+        menu:
+            "Next I talked to..."
+            
+            "Joseline":
+                jump JoselineLunch
+                
+            "Matt":
+                jump MattLunch
+            
+            "Fiora":
+                jump FioraLunch
+                
+label afterLunch:
+    scene black with fade
+    stop music fadeout 1.0
+    "The bell rings, signaling the end of our lunch period, and we all head back to class."
+    play music "Goodbye.wav"
+    image School = im.Scale("images/school.png", 1920, 1080)
+    scene School with fade
+    "Before long, my school day is over and it's time to head home. I guess seeing my friends made the rest of the day go by faster."
+    
+    stop music fadeout 1.0
+    scene black with fade
+    "The next day..."
+    play music "Title Theme 1.wav"
+    scene bedroom with fade
+    "I slept great last night!"
+    "I'm excited to go to school and talk to my friends at lunch today."
+    
+    scene black with fade
+    stop music fadeout 1.0
+    "The bus comes by at it's usual time and takes me to school."
+    "The first half of my day is boring, but goes by quickly. Before I know it, the bell rings for lunch and I'm off to see my friends."
+    
+    scene cafeteria with fade
+    play music "School Theme.wav"
+    "Lunch today is the leftover spaghetti and meatballs from dinner last night."
+    show Fiora:
+        xalign 0.1
+        yalign 1.0
+    "I see Fiora reading a 'Series of Unfortunate Events' book, and next to her is Matt."
+    show Matt:
+        xalign 0.9
+        yalign 1.0
+    "He's scarfing down some pizza with.. are those oreos and french fries?!"
+    "He's always had such odd tastes..."
+    "I strike up a conversation with Matt as I approach the table."
+    hide Fiora with dissolve
+    show Matt:
+        xalign 0.5
+        yalign 1.0
+    F2 "Hey bud!" 
+    F2 "I fixed up the car with some new spark plugs."
+    F2 "I was working on the AMX 'til midnight, but then my mom made me go to bed."
+    F2 "Hey, do you wanna come over to my place after school and help me out with the car?"
+    menu:
+        "What should I do?"
+        
+        "Nah, I've got a lot of work to do. We can hang out another time.":
+            MC "Sorry, I've got a lot of work I need to get done. But I can hang out this weekend!"
+            F2 "Alright, sounds like a plan!"
+            
+        "I can get my work done another time.":
+            MC "Sure! Sounds like a plan."
+            F2 "Awesome!"
+            
+    F2 "Let's talk about it more later. I see the rest of the group coming."
     hide Matt
-    show Fiora
-
-    F1 "English class was interesting, but when the teacher told us what books we were going to be reading I had already read every single one. Guess my homework is going to be more on the light side this year."
-
-    hide Fiora
-    show Jake
-
-
+    show Karl
+    with dissolve
+    "Yet again, while talking to Matt, somehow Karl snuck in, sat down, and started on his lunch."
+    show Karl:
+        xalign 0.1
+        yalign 1.0
+    show Joseline:
+        xalign 0.9
+        yalign 1.0
+    stop music fadeout 1.0
+    "Joseline sighs once she notices Karl."
+    "She's looking particularly impatient today."
+    play music "BullyTheme.wav"
+    F1 "Karl, are we going to have to do this again today?"
+    VC "But..but... I finally found a seat after being sent away from 5 other tables."
+    VC "Can I please just sit here and eat in peace?"
+    VC "No one wants me around..."
     menu:
-        F4 "Not a highlight reel thats for sure. I’m glad to see you guys again but I just hate classes for the most part. Nothing much to speak of today besides that incident earlier."
+        "What should I do...?"
+        
+        "Karl should just move. We were going to sit here":
+            $ bad = True
+            MC "Karl, you should just move. These are our seats."
+            F1 "Yeah, Karl. Everybody wants you out because you just sit down without asking."
+            F1 "You're just being straight up rude!"
+            hide Karl with dissolve
+            stop music
+            "Karl picks up his lunch and leaves the lunchroom."
+            hide Joseline with dissolve
+            "There’s a brief pause as the kids in the lunchroom watch him go, but then conversation resumes as normal."
+            play music "School Theme.wav"
+        
+        "Karl can stay here. We can just move.":
+            $ neutral = True
+            MC "Karl, you can stay here. Come on, guys, let's go find another table."
+            F1 "Fine. There's a table over there."
+            F1 "Getting into this same fight over and over isn't worth the stress, and he's not going to change his mind."
+            F1 "We'll just sit over there from now on."
+            hide Joseline with dissolve
+            hide Karl with dissolve
+            stop music
+            play music "School Theme.wav"
+            "Joseline leads us to a table towards the back of the cafeteria, complaining about Karl the whole way."
+            "I look back to see Karl still eating, but he looks so lonely sitting by himself."
+            
+        "There's a table over there that can seat all of us.":
+            $ good = True
+            stop music
+            MC "Hey, wait. There's a table over there with enough seats for all of us."
+            F1 "Wait, what? But I don't want to move."
+            play music "School Theme.wav"
+            show Matt with dissolve
+            F2 "I'm down. Couldn't hurt to make some new friends."
+            hide Matt
+            show Jake with dissolve
+            F4 "Yeah! Karl seems like a pretty legit guy."
+            hide Jake
+            show Fiora with dissolve
+            F3 "What a splendid idea! Karl, I'd love to hear your thoughts on Victorian literature?"
+            hide Fiora with dissolve
+            VC "..."
+            F1 "Ugh, fine. If you all are okay with it, I guess I am too."
+            F1 "Come on, Karl. We can all go sit together."
+            hide Joseline with dissolve
+            hide Karl with dissolve
+            "Together we all head over to the table near the back of the cafeteria with enough seats for all of us."
+            "Karl looks up for the first time since he's joined us, with a small, shy smile on his face."
+            "He also seems much happier, now that he's got some new friends. He fit in wonderfully at lunch and got along well with everyone, even Joseline."
+    
+    
+    "Lunch continues, and before I know it, it's time to return to class."
+    stop music fadeout 1.0
+    play music "Goodbye.wav"
+    scene School with fade
+    "After lunch, the end of the day came quickly and I went about my evening as planned."
+    scene black with fade
+    stop music fadeout 1.0
+    
+    "CONCLUSION"
+    
+    if good:
+        "From that day on, Karl started spending time with our group."
+        "He's really smart and helps us all with our homework during lunch."
+        "He really opened up to us, and everyone really likes him. I think he'll be a part of our group for a long time."
+        
+    if neutral:
+        "From that day on, at lunch I could always find Karl sitting alone at our old table."
+        "No one ever sat with him. I wonder if all this time, he just wanted some friends."
+        
+    if bad:
+        "From that day on, no one ever saw Karl at lunch anymore. Rumor has it he spends his lunch periods eating in the bathroom, alone, where no one can see his tears."
+        
 
-        "What incident?"
-            MC "What incident?"
-            F4 "That kid not moving from the seat for a while. I don’t know about you but that is the most action that has happened for me today."
-
-        "That incident with the lunch seat?"
-            MC "That incident with the lunch seat?"
-            F4 "Ya, definitely stood out from all the dull classes I had before lunch."
     
     
     

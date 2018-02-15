@@ -2,7 +2,7 @@
 
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
-
+define narrator = Character(None, what_italic=True)
 define MC = Character("Me")
 define F1 = Character("Joseline")
 define F2 = Character("Matt")
@@ -11,7 +11,7 @@ define F4 = Character("Jake")
 define VC = Character("Karl")
 define S1 = Character("Side1")
 define S2 = Character("Side2")
-define CH = Character("BGNoise")
+define CH = Character(None)
 define TEACHER = Character("Teacher")
 define BULLY = Character("Bully")
 
@@ -26,16 +26,31 @@ default bad = False
 
 # The game starts here.
 label start:
-
+    python:
+        myname = renpy.input("What is your name?")
+        myname = myname.strip()
     #jump development
 
     play music "Title Theme 1.wav"
     scene bedroom
     with fade
 
-    "It's finally time to head off to the first day of high school after an exciting summer with my friends."
+    CH "*Beep beep beep! Beep beep beep!*"
     
-    "I’m really hoping that my class is filled with my friends."
+    "I wake to the sound of my alarm, blaring excitedly in my ears."
+    menu:
+        "Today's the first day of school"
+        
+        "I should get up":
+            "I excitedly shower, get dressed, and brush my teeth, in anticipation of the day ahead."
+            "It's finally time to head off to the first day of high school after an exciting summer with my friends."
+            "I’m really hoping that my class is filled with my friends."
+
+        "5 more minutes won't hurt":
+            CH "*20 minutes later*"
+            "Shit! I overslept!"
+            "If I hurry though, I can make it to the bus on time."
+            "I can't be late on the first day of school!"
     
     scene black
     with fade
@@ -50,6 +65,8 @@ label start:
     scene hallway
     with fade
 
+    "As I wander the hall towards my homeroom class, I hear the chatter of the other students around me..."
+    
     CH "DO YOU KNOW DA WAE?"
 
     CH "What class are you in?"
@@ -72,7 +89,14 @@ label start:
     show Fiora
     with dissolve
     
-    F3 "Hey you! I so glad I have class with you. Come on inside! The teacher is about to take attendance."
+    F3 "Hey [myname]! I so glad I have class with you."
+    F3 "I had such a wonderful summer. How was yours? Did you do anything special?"
+    python:
+        mysummer = renpy.input("What should I tell Fiora I did this summer?")
+        mysummer = mysummer.strip()
+    F3 "[mysummer]?"
+    F3 "Sounds like a lot of fun!"
+    F3 "Anyway, come on inside! The teacher is about to take attendance."
     image classroom2 = im.Scale("images/classroom3.jpg", 1920, 1080)
     scene classroom2
     with fade
@@ -117,9 +141,18 @@ label start:
     hide Jake
     with dissolve
     
+    TEACHER "[myname]?"
+    python:
+        attendance = renpy.input("Oh! The teacher is calling my name. I should say something")
+        attendance = attendance.strip()
+    
+    MC "[attendance]!"
+        
+    TEACHER "Alright, now that everyone's here, let's get started..."
+    
     "The first class went on for an eternity, and by the time second period rolled around it became apparent my friends were also feeling the pain of coming back to school."
     
-    TEACHER "That means it's time for lunch. Take your things and head to the cafeteria."
+    TEACHER "Alright, everyone, time for lunch. Take your things and head to the cafeteria."
     image cafeteria = im.Scale("images/cafeteria.jpg", 1920, 1080)
     scene cafeteria
     with fade
@@ -196,7 +229,9 @@ label after_summer:
     F1 "Oh, come on, don't be that guy." 
     F1 "Like, seriously, just move."
     F1 "Is this SPECIFIC SPOT that important?"
-    F1 "I need that spot."
+    F1 "I need that spot!"
+    
+    "I feel like I should say something, but decide to just stand by and let things run their course."
     
     hide Karl
     with dissolve
@@ -206,7 +241,7 @@ label after_summer:
      staring at the floor, dropping some of his turkey sandwich as he goes."
     
     play music "School Theme.wav"
-    F1 "Finally, we can sit!"
+    F1 "Finally, I can sit!"
     hide Joseline
     show Jake
     with dissolve
@@ -395,8 +430,22 @@ label afterLunch:
     "The next day..."
     play music "Title Theme 1.wav"
     scene bedroom with fade
+    
+    CH "*Beep beep beep! Beep beep beep!*"
+    
+    "My diligent alarm wakes me up at the usual time"
     "I slept great last night!"
     "I'm excited to go to school and talk to my friends at lunch today."
+    "After getting ready, it's time to fuel up for the day and eat some breakfast."
+    menu:
+        "What should I eat for breakfast?"
+        
+        "Cereal":
+            "I pour out a bowl of my favorite cereal, add some milk, and chow down."
+            "That hit the spot!"
+
+        "Scrambled eggs and toast":
+            "It takes a little extra effort to get the eggs and toast all ready in time, but it was worth it!"
     
     scene black with fade
     stop music fadeout 1.0

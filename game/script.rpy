@@ -67,24 +67,24 @@ label start:
 
     "As I wander the hall towards my homeroom class, I hear the chatter of the other students around me..."
     
-    CH "DO YOU KNOW DA WAE?"
+    CH "'DO YOU KNOW DA WAE?'"
 
-    CH "What class are you in?"
+    CH "'What class are you in?'"
 
-    CH "You did not just say that."
+    CH "'You did not just say that.'"
 
-    CH "YOU MAD BRO?"
+    CH "'YOU MAD BRO?"
 
-    CH "Hope I’m not in a class with him."
+    CH "'Hope I’m not in a class with him.'"
 
-    CH "I've heard he’s just plain awful at everything... and his face."
+    CH "'I've heard he’s just plain awful at everything... and his face.'"
 
     "I guess the school hallways never change. Just memes and small talk for as long as I can remember."
 
-    "I approach the class and my friend, Fiora, approaches me with a warm smiling face."
     image classroom = im.Scale("images/classroom.jpg", 1920, 1080)
     scene classroom
     with fade
+    "I approach the class and my friend, Fiora, approaches me with a warm smiling face."
     image Fiora = im.Scale("images/fiora temp.png", 720, 720)
     show Fiora
     with dissolve
@@ -97,9 +97,7 @@ label start:
     F3 "[mysummer]?"
     F3 "Sounds like a lot of fun!"
     F3 "Anyway, come on inside! The teacher is about to take attendance."
-    image classroom2 = im.Scale("images/classroom3.jpg", 1920, 1080)
-    scene classroom2
-    with fade
+    hide Fiora with dissolve
     
     TEACHER "Everyone take a seat. Let me take attendance."
     
@@ -578,8 +576,37 @@ label afterLunch:
     if bad:
         "From that day on, no one ever saw Karl at lunch anymore. Rumor has it he spends his lunch periods eating in the bathroom, alone, where no one can see his tears."
         
+        
+        
+        
+    play music "Title Theme 1.wav"
+    scene bedroom
+    with fade
 
+    CH "*Beep beep beep! Beep beep beep!*"
+    "There's my alarm again. I wonder if I'll ever get used to getting up this early."
+    "It's been one week since school started, and I've finally decided to join the school track team."
+    "It'll be a nice way to get some exercise, and hang out with my friend Jake."
+    "But before I face the day, I have to decide what I'll do for breakfast."
+    menu:
+        "I might want the energy for the first day of practice today, but I don't want to miss the bus..."
+        
+        "Nothing; I'm not hungry.":
+            "I'm not really hungry this morning, and I wanna make sure I get to the bus on time."
+            
+        "Cereal":
+            "That really hit the spot! I'll have plenty of energy for my school day and track practice now."
+            
+        "Bagel":
+            "That really hit the spot! I'll have plenty of energy for my school day and track practice now."
+
+    stop music fadeout 1.0
+    scene black with fade
+    "The bus arrives and I'm off to school."
+    "My school day goes by as usual, and finally it's time for me to head to track practice with Jake."
     
+    scene hallway with fade
+    show Jake with dissolve
     
     
     return

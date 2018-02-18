@@ -14,7 +14,6 @@ define S2 = Character("Side2")
 define CH = Character(None)
 define TEACHER = Character("Teacher")
 define BULLY = Character("Bully")
-define Z = Character("Zeke")
 
 default lunchTalk = False
 default JoselineTalk = False
@@ -35,7 +34,6 @@ label start:
     play music "Title Theme 1.wav"
     scene bedroom
     with fade
-    
 
     CH "*Beep beep beep! Beep beep beep!*"
     
@@ -580,77 +578,7 @@ label afterLunch:
     if bad:
         "From that day on, no one ever saw Karl at lunch anymore. Rumor has it he spends his lunch periods eating in the bathroom, alone, where no one can see his tears."
         
-        
 
-    play music "Title Theme 1.wav"
-    scene bedroom
-    with fade
-
-    CH "*Beep beep beep! Beep beep beep!*"
-    
-    "I wake to the sound of my alarm, blaring excitedly in my ears."
-    menu:
-        "It's been one week since school started and I’ve finally chosen to join the track team at school. It will be a nice way to get some exercise and hang out with my good friend Jake. I wonder what I should choose to eat for breakfast today."
-        
-        "Nothing":
-           "I'm not hungry today and I really don’t want to be late for the bus."
-
-        "Cereal":
-            "That bowl of cereal hit the spot. I should be able to face today and track practice with lots of energy."
-            
-        "Bagel":
-            "That bagel hit the spot. I should be able to face today and track practice with lots of energy."
-            
-    
-    scene black
-    with fade
-    stop music fadeout 1.0
-
-    "The bus rounds the corner and it's off to school."
-    
-    play music "School Theme.wav"
-    image hallway = im.Scale("images/hallway1.png", 1920, 1080)
-    scene hallway
-    with fade
-
-    "The school day flies by as usual and it comes time for me to head to track practice with Jake."
-    
-    show Jake
-    with dissolve
-    
-    F4 "Hey [myname], I had the most lame day ever. Every class I had gave me mountains of homework and it's the second week of class."
-    F4 "High school is so much harder than middle school and SOOO much more boring. Only reason I made it through the day was because I knew I could run really fast at track practice today."
-    
-    menu:
-        "I should tell Jake about my day."
-        
-        "Same here.":
-            MC "Ya, classes are the worst now, I feel you. I can’t believe how much homework they give out to waste our time in high school. We have lives you know?"
-            F4 "You get me [myname], school is not my entire life. Anyway I guess we are here at practice. We should introduce ourselves to the team."
-        
-        "I barely got any homework.":
-            MC "None of my classes are really that bad. I’ve got some really nice teachers and reasonable amounts of homework, I only got a short reading assignment today and a few math problems."
-            F4 "LUCKY! You always get the good classes."
-            "Before I can mention to him that we have almost all of the same classes we arrive at the track field. Jake and I run over to meet the other members of the track team."
-            
-            
-    image campus = im.Scale("images/school entrance2.jpg", 1920, 1080)
-    scene campus
-    with fade
-            
-    "A whole lot of bulky kids are huddled near the center of the track field chatting with each other. One kid is on his phone at the side, sitting on the ground estranged from the main group."
-    
-    image Zeke = im.Scale("images/zeke temp.png", 720, 720)
-    show Zeke
-    with dissolve
-    
-    Z "Hey bros, wassup!  I’m Zeke and I’m the captain of the track team and the fastest person on the planet. What are your scroungy looking selves doing here? Ayy, I’m just kidding welcome to the team."
-    F4 "Hey dude! I’m Jake and this is my friend [myname]. We are gonna give you a run for your money on your self proclaimed title."
-    MC "Hey. Don’t underestimate us just because we are freshmen, Zeke."
-    Z "Ok bros, lets stop with these lame introductions and get straight into warmup."
-    
-    "The first track practice started with warmups into laps around the track for a while. Basically everyone was able to keep up with the pack for the hour or so we practiced except that one kid on the phone earlier."
-    "I never got to talk with him but by the end of practice he was weezing, completely out of energy. I headed to the locker room to change out of my workout clothes."          
     
     
     

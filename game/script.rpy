@@ -9,6 +9,7 @@ define F2 = Character("Matt")
 define F3 = Character("Fiora")
 define F4 = Character("Jake")
 define VC = Character("Karl")
+define SB = Character("Sebastian")
 define S1 = Character("Side1")
 define S2 = Character("Side2")
 define CH = Character(None)
@@ -604,6 +605,8 @@ label afterLunch:
     stop music fadeout 1.0
 
     "The bus rounds the corner and it's off to school."
+
+    #label development:
     
     play music "School Theme.wav"
     image hallway = im.Scale("images/hallway1.png", 1920, 1080)
@@ -631,7 +634,7 @@ label afterLunch:
             "Before I can mention to him that we have almost all of the same classes we arrive at the track field. Jake and I run over to meet the other members of the track team."
             
             
-    image campus = im.Scale("images/school entrance2.jpg", 1920, 1080)
+    image campus = im.Scale("images/campus.jpg", 1920, 1080)
     scene campus
     with fade
             
@@ -642,13 +645,165 @@ label afterLunch:
     with dissolve
     
     Z "Hey bros, wassup!  I’m Zeke and I’m the captain of the track team and the fastest person on the planet. What are your scroungy looking selves doing here? Ayy, I’m just kidding welcome to the team."
+    
+    show Jake with dissolve:
+        xalign .1
+        yalign 1.0
+    
     F4 "Hey dude! I’m Jake and this is my friend [myname]. We are gonna give you a run for your money on your self proclaimed title."
     MC "Hey. Don’t underestimate us just because we are freshmen, Zeke."
     Z "Ok bros, lets stop with these lame introductions and get straight into warmup."
     
     "The first track practice started with warmups into laps around the track for a while. Basically everyone was able to keep up with the pack for the hour or so we practiced except that one kid on the phone earlier."
-    "I never got to talk with him but by the end of practice he was weezing, completely out of energy. I headed to the locker room to change out of my workout clothes."          
+    "I never got to talk with him but by the end of practice he was weezing, completely out of energy. I headed to the locker room to change out of my workout clothes."
 
+    image lockerRoom = im.Scale("images/lockerRoom.jpg", 1920, 1080)
+    scene lockerRoom
+    with fade
+    
+    
+    show Zeke
+    with dissolve
+    
+    Z "Nice practice guys. Let's cool down in here."
+    
+    hide Zeke with dissolve
+    
+    stop music fadeout 1.0
+    
+    
+    "I change into clothes to head back home after practice."
+    "As I’m changing out of my sweaty clothes, I here some chanting from the far corner of the room. Jake looks ready to leave though and I would enjoy to walk home with him." 
+    
+    
+    play music "BullyTheme.wav"
+    
+    
+    menu:
+        
+        "I think I’ll…."
+        
+        "Head home with Jake.":
+            MC "Jake let's head out. I’m tired let’s go back home together. I’ll walk to your house before heading home."
+            
+            show Jake with dissolve
+            
+            F4 "Sounds awesome dude! Wanna race to the school entrance?"
+            
+            menu:
+                
+                "Do I still have enough energy to race Jake?"
+                
+                "Let's do it!":
+                    MC "You're on!"
+                    "Before I can finish my call to action, Jake is bolting towards the school entrance. I guess it's going to be an uphill battle for this win. I walk with Jake home and then go home to sleep for tomorrow."
+                    
+                "I'm too tired for that.":
+                    "Before I even open my mouth, Jake is bolting towards the school entrance. I guess it's going to be a race even if I don’t want it. I walk with Jake home and then go home to sleep for tomorrow."
+            
+        "Stick around to see what is happening in the back.":
+            "I decide to let Jake go home alone today and check out what's happening with the chanting in the back."
+            "I go to the back to see that kid with the phone run past me in a flurry, bumping into me on his way out. Zeke and the track team are laughing in the back."
+            
+            menu:
+                "What should I do now?"
+                
+                "Ask Zeke what happened that they were chanting about.":
+                    MC "What happened back with the chanting?"
+                    
+                    show Zeke with dissolve
+                    
+                    Z "Yo bro, we were just having fun chatting with Sebastian. He’s TOTALLY our type of guy, right bros?"
+                    
+                    menu:
+                    
+                        S1 "Ya just some locker room talk. Everything is cool between guys am I right?"
+                        
+                        "Inquire further.":
+                            MC "So what was the talk specifically about? He seemed in a hurry to get out of here."
+                            
+                            menu:
+                            
+                                Z "Oh we got him to send out some texts telling the girl he likes to meet him so he can dump her. Maybe then he won’t be so glued to that phone and start exercising."
+                                
+                                "Tell Zeke you dissaprove.":
+                                    MC "Why are you messing with his life? That is so uncalled for."
+                                    Z "Oh it will be so funny. Just wait for tomorrow."
+                                    MC "Zeke go tell him to not do that. He’s just wants to be a part of this group and you are going to ruin his high school life the second it started."
+                                    Z "Didn’t think you were such a buzzkill, but I guess I’ll go and tell him. Sheesh. Ppphfff."
+                                    "I rushed out after Zeke but I guess we were already too late. Bastian had already gone home so it would be necessary to stop him before anything happened that he couldn’t take back."
+                                    
+                                "Extract yourself from the conversation":
+                                    MC "Ok. I’m going to be going."
+                                    "I headed out back home, while being a little concerned about Bastian. I think he will be all right and won’t actually follow through."
+                            
+                        "Sounds like nothing.":
+                            MC "Ok just checking in. I’m gonna head out."
+                            Z "Later bro!"
+                            "I head back home alone, finish up my homework and hit the sack. Track practice was a whole lot of extra work."
+                    
+                "Go and run after the phone kid.":
+                    
+                    
+                    "I run after the kid on his phone to see what happened back there. I gesture him over to me at the school entrance to try and grasp what happened."
+                    
+                    scene School with fade
+                    
+                    image Sebastian = im.Scale("images/sebastian temp.jpg", 720, 720)
+                    show Sebastian
+                    with dissolve
+                    
+                    SB "What do you want with me?"
+                    MC "I’m just here to check in with you, you seemed in a hurry to get out of the locker room and I never did catch your name at practice."
+                    
+                    menu:
+                    
+                        SB "It’s Bastian, I’m a freshman. Don’t bother with me I’m not worth it."
+                        
+                        "Find out what happened.":
+                            MC "What happened? You can tell me, I’m a freshman too."
+                            
+                            menu:
+                            
+                                SB "Well they told me to insult the girl I have a crush on since middle school in order to be a part of the team. I just so badly want to have a place to belong but I don’t want to insult the girl I like."
+                            
+                                "Try to help.":
+                                    MC "That sounds awful. Can I help you in anyway? "
+                                    
+                                    menu:
+                                    
+                                        SB "It would be great if you could just tell “Fiora” that what I’m doing isn’t personal. I don’t think I have the heart to face her right now."
+                                        
+                                        "Agree.":
+                                            MC "You have my word."
+                                            SB "Thank you. This means a lot."
+                                            
+                                        "Disagree.":
+                                            MC "What am I your personal cupid? Do it yourself."
+                                            SB "…"
+                                            
+                                            label secondChoiceLabel:
+                                            
+                                            SB "I’m tired of being alone. This is my one chance to finally have friends and I’m willing to do anything and everything to achieve that."
+                                            
+                                            menu:
+                                                
+                                                SB "Even...even if it means losing the one person I care about. Can you please do me this one favor?"
+                                                
+                                                "Agree.":
+                                                    MC "Fine."
+                                                    SB "Thank you. This means a lot."
+                                                    
+                                                "Disagree.":
+                                                    MC "No way."
+                                                    SB "Why did you even bother coming to check on me if your intention was to make me feel worse. Just leave me alone."
+                                    
+                                "He must be really desperate to do this.":
+                                    MC "Wow, you must be really desperate to be in such a dilemma."
+                                    jump secondChoiceLabel
+                        
+                        "Let him be.":
+                            MC "OK, I'll respect your decision. Have a good day."
     
     
     return

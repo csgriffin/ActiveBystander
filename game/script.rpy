@@ -40,7 +40,7 @@ label start:
     python:
         myname = renpy.input("What is your name?")
         myname = myname.strip()
-    #jump development
+    jump development
 
     play music "Title Theme 1.wav"
     scene bedroom
@@ -829,5 +829,104 @@ label afterLunch:
                         "Let him be.":
                             MC "OK, I'll respect your decision. Have a good day."
     
+    
+                            
+    scene black with fade
+    stop music fadeout 1.0
+    "I go home for the night."
+                            
+    label development:
+                            
+    play music "Title Theme 1.wav"
+    scene bedroom
+    with fade
+    
+    "Another day, another a dollar."
+    "That is what I would say if I were paid to learn."
+    "Honestly I should really get paid for dealing with so much drama within the span of one week."
+    "I wonder if Bastian will go through with Zeke’s prank. And if so should I stop him or just let things play out. "
+    "I'll finid out at school. No point being late."
+    
+    stop music fadeout 1.0
+    play music "School Theme.wav"
+    image hallway = im.Scale("images/hallway1.png", 1920, 1080)
+    scene hallway
+    with fade
+    
+    "I walked into school and traverse the crowded hallways as usual to get to my locker."
+    "It’s only been a week, but I already feel like I’m stuck in a rut."
+    "As I walk up to my locker I look around and see Fiora putting her books away in her locker and near her I see Bastian with a group of the track jockeys whispering to each other."
+    
+    show Sebastian with dissolve
+    
+    S1 "Hey you ready Bastian! This is your big moment!"
+    S2 "Yeah! You do this and you’ll officially be one of us!"
+    CH "One of us ! One of us! One of us!"
+    SB "O...ok."
+    
+    "Bastian walks over slowly to Fiora. As he reaches her Fiora looks up with a smile on her face unaware of the verbal abuse she’s about to receive."
+    
+    show Fiora with dissolve:
+        xalign 0.1
+        yalign 1.0
+    
+    F3 "Hi Bastian!  I haven’t seen you in awhile. How was your Summer?"
+    "Bastian only looks on at Fiora sweaty and nervous as he tries to vocalize his thoughts."
+    F3 "Are you feeling alright Bastian? You’re looking kind of sweaty."
+    F3 "I have a small towel you can borrow. I heard you joined the track team so  you must be working hard. "
+    "This girl is too kind for this world."
+    SB "I...I wouldn’t want your dirty towel."
+    
+    menu:
+        
+        "Fiora’s smile quickly switches to a dejected frown. "
+        
+        "Intervene.":
+            $ good2 = true
+            "I immediately walk up to Fiora and Bastian just before he spouts anymore blasphemy against Fiora’s pristine towel. "
+            " I look at Bastian and then Fiora and grab the towel out of her hands and hand it to Bastian."
+            MC "What he meant to say was that he wouldn’t want to dirty such a nice clean towel. Isn’t that right Bastian?"
+            "Bastian sighing with relief wipes his brow with Fiora’s towel "
+            SB "Ye...yeah that’s right. "
+            F3 "Oh don’t worry about it keep it as long as you need too! So what’s it like being on the track team?"
+            SB "It’s fun but I think I’m gonna quit the members are kind of jerks."
+            F3 "Oh that’s too bad well if you ever want hang out after school my friends and I are always available. "
+            SB "That’d be awesome!"
+            MC "Hehe ye. Looks like my job is done."
+            
+            hide Fiora with dissolve
+            hide Sebastian with disolve
+            
+            "I walk over to the group of track jocks looking confused as to what’s happening and give them a stern look. "
+            MC "Don’t just think someone like me is going to stay a bystander as you bully others into doing your bidding."
+            
+        "Avoid the drama.":
+            $bad2 = true
+            MC "Meh, not my problem. I wonder what they’re serving for lunch today? I hope it’s pizza pockets."
+            
+            hide Fiora with dissolve
+            hide Sebastian with dissolve
+            
+            "Knowing it wasn’t my place to get involved with the situation. I walked past a crying Fiora and a depressed looking Bastian."
+            "The track jockey spectators just kept laughing as Bastian laid it on thick. Who knew he had it in him to be so cruel."
+            
+    scene black with fade
+    stop music fadeout 1.0
+        
+    if good and good2:
+        "Later that day during lunch I walked up to the usual table and looked on smiling. Bastian and Fiora were laughing together and Karl was smiling while having a conversation with Joseline, Matt and Jake."
+        "Old friends with new friends nothing could be better than this."
+        
+    if neutral and good2:
+        "Later that day during lunch I walked up to the usual table and looked on smiling. Bastian and Fiora were laughing together while having a conversation with Joseline, Matt and Jake."
+        
+    if bad and good2:
+        "Later that day during lunch I walked up to the usual table. Bastian and Fiora were lhaving a conversation with Joseline, Matt and Jake."
+        
+    if bad2:
+        "Later that day during lunch everyone in our usual friend group was sitting at a table except for Fiora."
+        "Joseline said that she was crying in the girl’s bathroom and wouldn’t come out."
+        "Rumour has it that Bastian was the cause, but no one can ask him because he always goes home immediately after school even though he’s part of the track team now."
+        "I wonder if the outcome would have been better if I was more active in stopping Bastian."
     
     return

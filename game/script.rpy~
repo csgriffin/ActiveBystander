@@ -9,6 +9,7 @@ define F2 = Character("Matt")
 define F3 = Character("Fiora")
 define F4 = Character("Jake")
 define VC = Character("Karl")
+define SB = Character("Sebastian")
 define S1 = Character("Side1")
 define S2 = Character("Side2")
 define CH = Character(None)
@@ -24,6 +25,15 @@ default JakeTalk = False
 default good = False
 default neutral = False
 default bad = False
+
+#image defines because I don't know why it's not working without these
+#image FHappy = "FHappy.png"
+#image FModest = "FModest.png"
+image FNorm = "FNorm.png"
+image FBored = "FBored.png"
+
+image MBored = "MBored.png"
+image MNorm = "MNorm.png"
 
 # The game starts here.
 label start:
@@ -87,23 +97,30 @@ label start:
     scene classroom
     with fade
     "I approach the class and my friend, Fiora, approaches me with a warm smiling face."
-    image Fiora = im.Scale("images/fiora temp.png", 720, 720)
-    show Fiora
+    #image Fiora = im.Scale("images/fiora temp.png", 720, 720)
+    show FHappy
     with dissolve
     
     F3 "Hey [myname]! I so glad I have class with you."
+    hide FHappy 
+    show FNorm
     F3 "I had such a wonderful summer. How was yours? Did you do anything special?"
     python:
         mysummer = renpy.input("What should I tell Fiora I did this summer?")
         mysummer = mysummer.strip()
     F3 "[mysummer]?"
+    hide FNorm 
+    show FHappy
     F3 "Sounds like a lot of fun!"
+    hide FHappy 
+    show FNorm
     F3 "Anyway, come on inside! The teacher is about to take attendance."
-    hide Fiora with dissolve
+    hide FNorm 
+    with dissolve
     
     TEACHER "Everyone take a seat. Let me take attendance."
     
-    "I look around to see that four of my friends from middle shcool are in my homeroom."
+    "I look around to see that four of my friends from middle school are in my homeroom."
     "It looks like I scored the jackpot when it comes to homeroom placement!"
     
     TEACHER "Joseline?"
@@ -116,20 +133,19 @@ label start:
     with dissolve
     
     TEACHER "Matt?"
-    image Matt = im.Scale("images/matt temp.png", 720, 720)
-    show Matt
+    show MNorm
     with dissolve
     
     F2 "Hi"
-    hide Matt
+    hide MNorm
     with dissolve
     
     TEACHER "Fiora?"
-    show Fiora
+    show FNorm
     with dissolve
     
     F3 "Present!"
-    hide Fiora
+    hide FNorm
     with dissolve
     
     TEACHER "Jake?"
@@ -160,13 +176,11 @@ label start:
     "Thank goodness! Now I can finally have some time to catch up with my friends and tell them some stories about my summer." 
     
     "I can see Matt waving me over to the table at the front of the cafeteria."
-    show Matt
+    show MNorm
     with dissolve
     
     MC "Hey! How was your summer?"
-    
     F2 "It was great! I was able to fix up my AMX car over the summer with my dad. She's a real beauty!"
-    
     F2 "How was your summer?"
     
     menu:
@@ -174,21 +188,18 @@ label start:
         
         "...was great!":
             
-            show Matt
             MC "My summer was great!"
             F2 "Awesome!"
             
         "... could've been better...":
             
-            show Matt
             MC "It could've been better..."
             F2 "Damn. Well hopefully this school year will be better."
             
 label after_summer:
     
-    show Matt
     F2 "Hey, I see the rest of the gang coming over here."
-    hide Matt
+    hide MNorm
     with dissolve
     F2 "Can you wave at them so they see us?"
     
@@ -259,17 +270,19 @@ label after_summer:
     #label development:
     #        "SKIPPED!"
 
-    show Fiora
+    show FNorm
     with dissolve
     
     F3 "Speaking of speed, have you guys noticed that this day feels like anything but speedy?"
     F3 "It feels like a marathon just to get through all these rules for every class."
+    hide FNorm 
+    show FHappy
     F3 "I just want to get home and relax in bed with some Jane Austen books. "
     
     "Jane Austen again? I swear, Fiora reads one of Jane Austen's books literally every day."
     "She's probably the most voracious reader in the whole world!"
 
-    hide Fiora
+    hide FHappy
     with dissolve
     
     "While we eat, I decide to talk to a couple of my friends about their day so far..."
@@ -317,11 +330,13 @@ label JoselineLunch:
         jump secondFriend
 
 label MattLunch:
-    show Matt with dissolve
+    show MBored with dissolve
     F2 "My day has been nothing but boring; the classes haven’t even shifted into 2nd gear yet."
     F2 "All we get are teachers who explain rules and then give a dumb icebreaker, even though I know half the kids."
+    hide MBored 
+    show MNorm
     F2 "I can’t wait to get home to the car to tweak a few things though."
-    hide Matt with dissolve
+    hide MNorm with dissolve
     $ MattTalk = True
     if lunchTalk:
         jump afterLunch
@@ -330,10 +345,12 @@ label MattLunch:
         jump secondFriend
     
 label FioraLunch:
-    show Fiora with dissolve
+    show FModest with dissolve
     F3 "English class was interesting, but when the teacher told us what books we were going to be reading I had already read every single one."
+    hide FModest 
+    show FHappy
     F3 "Guess my homework is going to be more on the light side this year!"
-    hide Fiora with dissolve
+    hide FHappy with dissolve
     $ FioraTalk = True
     if lunchTalk:
         jump afterLunch
@@ -455,37 +472,45 @@ label afterLunch:
     scene cafeteria with fade
     play music "School Theme.wav"
     "Lunch today is the leftover spaghetti and meatballs from dinner last night."
-    show Fiora:
+    show FNorm:
         xalign 0.1
         yalign 1.0
     "I see Fiora reading a 'Series of Unfortunate Events' book, and next to her is Matt."
-    show Matt:
+    show MNorm:
         xalign 0.9
         yalign 1.0
     "He's scarfing down some pizza with.. are those oreos and french fries?!"
     "He's always had such odd tastes..."
     "I strike up a conversation with Matt as I approach the table."
-    hide Fiora with dissolve
-    show Matt:
+    hide FNorm with dissolve
+    show MNorm:
         xalign 0.5
         yalign 1.0
     F2 "Hey bud!" 
     F2 "I fixed up the car with some new spark plugs."
     F2 "I was working on the AMX 'til midnight, but then my mom made me go to bed."
+    hide FNorm 
+    show FTalk
     F2 "Hey, do you wanna come over to my place after school and help me out with the car?"
     menu:
         "What should I do?"
         
         "Nah, I've got a lot of work to do. We can hang out another time.":
             MC "Sorry, I've got a lot of work I need to get done. But I can hang out this weekend!"
+            hide FTalk 
+            show FNorm
             F2 "Alright, sounds like a plan!"
+            hide FNorm 
+            with dissolve
             
         "I can get my work done another time.":
             MC "Sure! Sounds like a plan."
+            hide FTalk 
+            show FLaugh
             F2 "Awesome!"
+            hide FLaugh with dissolve
             
     F2 "Let's talk about it more later. I see the rest of the group coming."
-    hide Matt
     show Karl
     with dissolve
     "Yet again, while talking to Matt, somehow Karl snuck in, sat down, and started on his lunch."
@@ -537,15 +562,15 @@ label afterLunch:
             MC "Hey, wait. There's a table over there with enough seats for all of us."
             F1 "Wait, what? But I don't want to move."
             play music "School Theme.wav"
-            show Matt with dissolve
+            show MNorm with dissolve
             F2 "I'm down. Couldn't hurt to make some new friends."
-            hide Matt
+            hide MNorm
             show Jake with dissolve
             F4 "Yeah! Karl seems like a pretty legit guy."
             hide Jake
-            show Fiora with dissolve
+            show FHappy with dissolve
             F3 "What a splendid idea! Karl, I'd love to hear your thoughts on Victorian literature?"
-            hide Fiora with dissolve
+            hide FHappy with dissolve
             VC "..."
             F1 "Ugh, fine. If you all are okay with it, I guess I am too."
             F1 "Come on, Karl. We can all go sit together."
@@ -604,6 +629,8 @@ label afterLunch:
     stop music fadeout 1.0
 
     "The bus rounds the corner and it's off to school."
+
+    #label development:
     
     play music "School Theme.wav"
     image hallway = im.Scale("images/hallway1.png", 1920, 1080)
@@ -631,7 +658,7 @@ label afterLunch:
             "Before I can mention to him that we have almost all of the same classes we arrive at the track field. Jake and I run over to meet the other members of the track team."
             
             
-    image campus = im.Scale("images/school entrance2.jpg", 1920, 1080)
+    image campus = im.Scale("images/campus.jpg", 1920, 1080)
     scene campus
     with fade
             
@@ -642,13 +669,165 @@ label afterLunch:
     with dissolve
     
     Z "Hey bros, wassup!  I’m Zeke and I’m the captain of the track team and the fastest person on the planet. What are your scroungy looking selves doing here? Ayy, I’m just kidding welcome to the team."
+    
+    show Jake with dissolve:
+        xalign .1
+        yalign 1.0
+    
     F4 "Hey dude! I’m Jake and this is my friend [myname]. We are gonna give you a run for your money on your self proclaimed title."
     MC "Hey. Don’t underestimate us just because we are freshmen, Zeke."
     Z "Ok bros, lets stop with these lame introductions and get straight into warmup."
     
     "The first track practice started with warmups into laps around the track for a while. Basically everyone was able to keep up with the pack for the hour or so we practiced except that one kid on the phone earlier."
-    "I never got to talk with him but by the end of practice he was weezing, completely out of energy. I headed to the locker room to change out of my workout clothes."          
+    "I never got to talk with him but by the end of practice he was weezing, completely out of energy. I headed to the locker room to change out of my workout clothes."
 
+    image lockerRoom = im.Scale("images/lockerRoom.jpg", 1920, 1080)
+    scene lockerRoom
+    with fade
+    
+    
+    show Zeke
+    with dissolve
+    
+    Z "Nice practice guys. Let's cool down in here."
+    
+    hide Zeke with dissolve
+    
+    stop music fadeout 1.0
+    
+    
+    "I change into clothes to head back home after practice."
+    "As I’m changing out of my sweaty clothes, I here some chanting from the far corner of the room. Jake looks ready to leave though and I would enjoy to walk home with him." 
+    
+    
+    play music "BullyTheme.wav"
+    
+    
+    menu:
+        
+        "I think I’ll…."
+        
+        "Head home with Jake.":
+            MC "Jake let's head out. I’m tired let’s go back home together. I’ll walk to your house before heading home."
+            
+            show Jake with dissolve
+            
+            F4 "Sounds awesome dude! Wanna race to the school entrance?"
+            
+            menu:
+                
+                "Do I still have enough energy to race Jake?"
+                
+                "Let's do it!":
+                    MC "You're on!"
+                    "Before I can finish my call to action, Jake is bolting towards the school entrance. I guess it's going to be an uphill battle for this win. I walk with Jake home and then go home to sleep for tomorrow."
+                    
+                "I'm too tired for that.":
+                    "Before I even open my mouth, Jake is bolting towards the school entrance. I guess it's going to be a race even if I don’t want it. I walk with Jake home and then go home to sleep for tomorrow."
+            
+        "Stick around to see what is happening in the back.":
+            "I decide to let Jake go home alone today and check out what's happening with the chanting in the back."
+            "I go to the back to see that kid with the phone run past me in a flurry, bumping into me on his way out. Zeke and the track team are laughing in the back."
+            
+            menu:
+                "What should I do now?"
+                
+                "Ask Zeke what happened that they were chanting about.":
+                    MC "What happened back with the chanting?"
+                    
+                    show Zeke with dissolve
+                    
+                    Z "Yo bro, we were just having fun chatting with Sebastian. He’s TOTALLY our type of guy, right bros?"
+                    
+                    menu:
+                    
+                        S1 "Ya just some locker room talk. Everything is cool between guys am I right?"
+                        
+                        "Inquire further.":
+                            MC "So what was the talk specifically about? He seemed in a hurry to get out of here."
+                            
+                            menu:
+                            
+                                Z "Oh we got him to send out some texts telling the girl he likes to meet him so he can dump her. Maybe then he won’t be so glued to that phone and start exercising."
+                                
+                                "Tell Zeke you dissaprove.":
+                                    MC "Why are you messing with his life? That is so uncalled for."
+                                    Z "Oh it will be so funny. Just wait for tomorrow."
+                                    MC "Zeke go tell him to not do that. He’s just wants to be a part of this group and you are going to ruin his high school life the second it started."
+                                    Z "Didn’t think you were such a buzzkill, but I guess I’ll go and tell him. Sheesh. Ppphfff."
+                                    "I rushed out after Zeke but I guess we were already too late. Bastian had already gone home so it would be necessary to stop him before anything happened that he couldn’t take back."
+                                    
+                                "Extract yourself from the conversation":
+                                    MC "Ok. I’m going to be going."
+                                    "I headed out back home, while being a little concerned about Bastian. I think he will be all right and won’t actually follow through."
+                            
+                        "Sounds like nothing.":
+                            MC "Ok just checking in. I’m gonna head out."
+                            Z "Later bro!"
+                            "I head back home alone, finish up my homework and hit the sack. Track practice was a whole lot of extra work."
+                    
+                "Go and run after the phone kid.":
+                    
+                    
+                    "I run after the kid on his phone to see what happened back there. I gesture him over to me at the school entrance to try and grasp what happened."
+                    
+                    scene School with fade
+                    
+                    image Sebastian = im.Scale("images/sebastian temp.jpg", 720, 720)
+                    show Sebastian
+                    with dissolve
+                    
+                    SB "What do you want with me?"
+                    MC "I’m just here to check in with you, you seemed in a hurry to get out of the locker room and I never did catch your name at practice."
+                    
+                    menu:
+                    
+                        SB "It’s Bastian, I’m a freshman. Don’t bother with me I’m not worth it."
+                        
+                        "Find out what happened.":
+                            MC "What happened? You can tell me, I’m a freshman too."
+                            
+                            menu:
+                            
+                                SB "Well they told me to insult the girl I have a crush on since middle school in order to be a part of the team. I just so badly want to have a place to belong but I don’t want to insult the girl I like."
+                            
+                                "Try to help.":
+                                    MC "That sounds awful. Can I help you in anyway? "
+                                    
+                                    menu:
+                                    
+                                        SB "It would be great if you could just tell “Fiora” that what I’m doing isn’t personal. I don’t think I have the heart to face her right now."
+                                        
+                                        "Agree.":
+                                            MC "You have my word."
+                                            SB "Thank you. This means a lot."
+                                            
+                                        "Disagree.":
+                                            MC "What am I your personal cupid? Do it yourself."
+                                            SB "…"
+                                            
+                                            label secondChoiceLabel:
+                                            
+                                            SB "I’m tired of being alone. This is my one chance to finally have friends and I’m willing to do anything and everything to achieve that."
+                                            
+                                            menu:
+                                                
+                                                SB "Even...even if it means losing the one person I care about. Can you please do me this one favor?"
+                                                
+                                                "Agree.":
+                                                    MC "Fine."
+                                                    SB "Thank you. This means a lot."
+                                                    
+                                                "Disagree.":
+                                                    MC "No way."
+                                                    SB "Why did you even bother coming to check on me if your intention was to make me feel worse. Just leave me alone."
+                                    
+                                "He must be really desperate to do this.":
+                                    MC "Wow, you must be really desperate to be in such a dilemma."
+                                    jump secondChoiceLabel
+                        
+                        "Let him be.":
+                            MC "OK, I'll respect your decision. Have a good day."
     
     
     return

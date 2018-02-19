@@ -27,14 +27,13 @@ default neutral = False
 default bad = False
 
 #image defines because I don't know why it's not working without these
-image FHappy = "FHappy.png"
-image FModest = "FModest.png"
+#image FHappy = "FHappy.png"
+#image FModest = "FModest.png"
 image FNorm = "FNorm.png"
+image FBored = "FBored.png"
 
 image MBored = "MBored.png"
-image MLaugh = "MLaugh.png"
 image MNorm = "MNorm.png"
-image MTalk = "MTalk.png"
 
 # The game starts here.
 label start:
@@ -121,7 +120,7 @@ label start:
     
     TEACHER "Everyone take a seat. Let me take attendance."
     
-    "I look around to see that four of my friends from middle shcool are in my homeroom."
+    "I look around to see that four of my friends from middle school are in my homeroom."
     "It looks like I scored the jackpot when it comes to homeroom placement!"
     
     TEACHER "Joseline?"
@@ -181,11 +180,7 @@ label start:
     with dissolve
     
     MC "Hey! How was your summer?"
-    hide MNorm 
-    show MLaugh
     F2 "It was great! I was able to fix up my AMX car over the summer with my dad. She's a real beauty!"
-    hide MLaugh 
-    show MNorm
     F2 "How was your summer?"
     
     menu:
@@ -194,23 +189,17 @@ label start:
         "...was great!":
             
             MC "My summer was great!"
-            hide MNorm 
-            show MLaugh
             F2 "Awesome!"
-            hide MLaugh 
-            show MTalk
             
         "... could've been better...":
             
             MC "It could've been better..."
             F2 "Damn. Well hopefully this school year will be better."
-            hide MNorm 
-            show MTalk
             
 label after_summer:
     
     F2 "Hey, I see the rest of the gang coming over here."
-    hide MTalk
+    hide MNorm
     with dissolve
     F2 "Can you wave at them so they see us?"
     

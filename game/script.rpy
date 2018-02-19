@@ -25,22 +25,67 @@ default JakeTalk = False
 default good = False
 default neutral = False
 default bad = False
+default good2 = False
+default bad2 = False
 
 #image defines because I don't know why it's not working without these
 #image FHappy = "FHappy.png"
 #image FModest = "FModest.png"
 image FNorm = "FNorm.png"
 image FBored = "FBored.png"
+image FSad = "FSad.png"
+
+image JBlank = "JBlank.png"
+image JLaugh = "JLaugh.png"
+image JMad = "JMad.png"
+image JNorm = "JNorm.png"
+image JShame = "JShame.png"
+image JTalk = "JTalk.png"
+
+image JoCry = "JoCry.png"
+image JoDisgust = "JoDisgust.png"
+image JoHappy = "JoHappy.png"
+image JoMad = "JoMad.png"
+image JoModest = "JoModest.png"
+image JoNo = "JoNo.png"
+image JoNorm = "JoNorm.png"
+image JoScold = "JoScold.png"
+image JoShock = "JoShock.png"
+image JoSmart = "JoSmart.png"
+
+image KNorm = "KNorm.png"
+image KSad = "KSad.png"
+image KShock = "KShock.png"
+image KSmile = "KSmile.png"
 
 image MBored = "MBored.png"
 image MNorm = "MNorm.png"
+image MAngry = "MAngry.png"
+image MBlank = "MBlank.png"
+image MShock = "MShock.png"
+
+image SDown = "SDown.png"
+image SMad = "SMad.png"
+image SNorm = "SNorm.png"
+image SSad = "SSad.png"
+image SShock = "SShock.png"
+image SSmile = "SSmile.png"
+
+image ZAwk = "ZAwk.png"
+image ZConfuse = "ZConfuse.png"
+image ZDown = "ZDown.png"
+image ZMad = "ZMad.png"
+image ZNorm = "ZNorm.png"
+image ZShock = "ZShock.png"
+image ZSide = "ZSide.png"
+image ZSmile = "ZSmile.png"
 
 # The game starts here.
 label start:
     python:
         myname = renpy.input("What is your name?")
         myname = myname.strip()
-    jump development
+    #jump development
 
     play music "Title Theme 1.wav"
     scene bedroom
@@ -97,23 +142,16 @@ label start:
     scene classroom
     with fade
     "I approach the class and my friend, Fiora, approaches me with a warm smiling face."
-    #image Fiora = im.Scale("images/fiora temp.png", 720, 720)
-    show FHappy
+    show FNorm
     with dissolve
     
     F3 "Hey [myname]! I so glad I have class with you."
-    hide FHappy 
-    show FNorm
     F3 "I had such a wonderful summer. How was yours? Did you do anything special?"
     python:
         mysummer = renpy.input("What should I tell Fiora I did this summer?")
         mysummer = mysummer.strip()
     F3 "[mysummer]?"
-    hide FNorm 
-    show FHappy
     F3 "Sounds like a lot of fun!"
-    hide FHappy 
-    show FNorm
     F3 "Anyway, come on inside! The teacher is about to take attendance."
     hide FNorm 
     with dissolve
@@ -124,12 +162,11 @@ label start:
     "It looks like I scored the jackpot when it comes to homeroom placement!"
     
     TEACHER "Joseline?"
-    image Joseline = im.Scale("images/joseline temp.png", 720, 720)
-    show Joseline
+    show JoNorm
     with dissolve
     
     F1 "Here!"
-    hide Joseline
+    hide JoNorm
     with dissolve
     
     TEACHER "Matt?"
@@ -149,12 +186,11 @@ label start:
     with dissolve
     
     TEACHER "Jake?"
-    image Jake = im.Scale("images/jake temp.png", 720, 720)
-    show Jake
+    show JNorm
     with dissolve
     
     F4 "'Sup!"
-    hide Jake
+    hide JNorm
     with dissolve
     
     TEACHER "[myname]?"
@@ -203,27 +239,26 @@ label after_summer:
     with dissolve
     F2 "Can you wave at them so they see us?"
     
-    image Karl = im.Scale("images/karl temp.png", 720, 720)
-    show Karl
+    show KNorm
     with dissolve
     "As I start to wave, I notice Karl is sitting right next to us and is already eating his turkey sandwich."
     "I must have missed him while Matt and I were talking."
     "It occurs to me that, because Karl is sitting here now, there isn't enough room for all of us to sit here."
-    hide Karl
+    hide KNorm
     with dissolve
     "Joseline is leading the rest of the group as they approach the table"
             
-    show Joseline
+    show JoNorm
     with dissolve
     F1 "Oh, it looks like we're one seat short."
     stop music fadeout 1.0
 
     "She looks over at Karl."
-    show Joseline:
+    show JoDisgust:
         xalign 0.9
         yalign 1.0
     
-    show Karl:
+    show KNorm:
         xalign 0.1
         yalign 1.0
     with dissolve
@@ -232,19 +267,35 @@ label after_summer:
     F1 "Hey, could you move so we can sit together?"
      
     "Karl looks up for a second, but then goes back to eating."
-     
+    
+    hide JoDisgust
+    show JoScold:
+        xalign 0.9
+        yalign 1.0
     F1 "Come on, can you move? We're gonna sit together."
-     
+    
+    hide KNorm
+    show KSad:
+        xalign 0.1
+        yalign 1.0
     VC "I've already moved twice already, and I just unpacked my lunch. Sorry."
     
+    hide JoScold
+    show JoMad:
+        xalign 0.9
+        yalign 1.0
     F1 "Oh, come on, don't be that guy." 
     F1 "Like, seriously, just move."
+    hide KSad
+    show KShock:
+        xalign 0.1
+        yalign 1.0
     F1 "Is this SPECIFIC SPOT that important?"
     F1 "I need that spot!"
     
     "I feel like I should say something, but decide to just stand by and let things run their course."
     
-    hide Karl
+    hide KShock
     with dissolve
     stop music fadeout 1.0
     "I start to see looks coming from around the cafeteria. 
@@ -252,9 +303,11 @@ label after_summer:
      staring at the floor, dropping some of his turkey sandwich as he goes."
     
     play music "School Theme.wav"
+    hide JoMad
+    show JoNorm
     F1 "Finally, I can sit!"
-    hide Joseline
-    show Jake
+    hide JoNorm
+    show JNorm
     with dissolve
     
     F4 "What is up my guys? High school seems to be off to a pretty strong start for us."
@@ -265,7 +318,7 @@ label after_summer:
     "I never caught up to him when it came to making ridiculous noises. What a goof."
     "I'm sure the track team would be fun with him at my side."
     
-    hide Jake
+    hide JNorm
 
     #label development:
     #        "SKIPPED!"
@@ -275,14 +328,12 @@ label after_summer:
     
     F3 "Speaking of speed, have you guys noticed that this day feels like anything but speedy?"
     F3 "It feels like a marathon just to get through all these rules for every class."
-    hide FNorm 
-    show FHappy
     F3 "I just want to get home and relax in bed with some Jane Austen books. "
     
     "Jane Austen again? I swear, Fiora reads one of Jane Austen's books literally every day."
     "She's probably the most voracious reader in the whole world!"
 
-    hide FHappy
+    hide FNorm
     with dissolve
     
     "While we eat, I decide to talk to a couple of my friends about their day so far..."
@@ -303,7 +354,7 @@ label after_summer:
             jump JakeLunch
 
 label JoselineLunch:
-    show Joseline with dissolve
+    show JoDisgust with dissolve
     F1 "I was having a great day with classes until that kid had to be so rude and take that seat."
     F1 "I mean, he kinda seems like a jerk to me, don’t you think? Who just sits and doesn’t move when asked?"
             
@@ -313,15 +364,22 @@ label JoselineLunch:
         "Maybe she was exaggerating a little...":
             MC "I think you might have been exaggerating a little..."
             F1 "Ppfh. I mean, he did move eventually, I guess."
+            hide JoDisgust with dissolve
                   
         "She's right. What a jerk!":
             MC "You're right. What a jerk!"
+            hide JoDisgust
+            show JoHappy
             F1 "Yeah! You know what I'm talking about!"
+            hide JoHappy with dissolve
                  
         "She was kind of a jerk to him.":
             MC "Seemed to me like YOU were the one being a jerk there."
+            hide JoDisgust
+            show JoMad
             F1 "You're gonna come out and call ME the jerk?! I thought you were my friend, not some little weasel."
-    hide Joseline with dissolve
+            hide JoMad with dissolve
+            
     $ JoselineTalk = True
     if lunchTalk:
         jump afterLunch
@@ -345,12 +403,12 @@ label MattLunch:
         jump secondFriend
     
 label FioraLunch:
-    show FModest with dissolve
+    show FBored with dissolve
     F3 "English class was interesting, but when the teacher told us what books we were going to be reading I had already read every single one."
-    hide FModest 
-    show FHappy
+    hide FBored
+    show FNorm
     F3 "Guess my homework is going to be more on the light side this year!"
-    hide FHappy with dissolve
+    hide FNorm with dissolve
     $ FioraTalk = True
     if lunchTalk:
         jump afterLunch
@@ -359,7 +417,7 @@ label FioraLunch:
         jump secondFriend
     
 label JakeLunch:
-    show Jake with dissolve
+    show JShame with dissolve
     F4 "Not a highlight reel, thats for sure."
     F4 "I’m glad to see you guys again, but I just hate classes for the most part."
     F4 "Nothing much to speak of today besides that incident earlier."
@@ -372,7 +430,7 @@ label JakeLunch:
             MC "You mean just now with Karl?"
             F4 "Yeah. Definitely stood out from all the dull classes I had before lunch."
             
-    hide Jake with dissolve
+    hide JShame with dissolve
     $ JakeTalk = True
     if lunchTalk:
         jump afterLunch
@@ -489,35 +547,30 @@ label afterLunch:
     F2 "Hey bud!" 
     F2 "I fixed up the car with some new spark plugs."
     F2 "I was working on the AMX 'til midnight, but then my mom made me go to bed."
-    hide FNorm 
-    show FTalk
     F2 "Hey, do you wanna come over to my place after school and help me out with the car?"
     menu:
         "What should I do?"
         
         "Nah, I've got a lot of work to do. We can hang out another time.":
             MC "Sorry, I've got a lot of work I need to get done. But I can hang out this weekend!"
-            hide FTalk 
-            show FNorm
             F2 "Alright, sounds like a plan!"
-            hide FNorm 
+            hide MNorm 
             with dissolve
             
         "I can get my work done another time.":
             MC "Sure! Sounds like a plan."
-            hide FTalk 
-            show FLaugh
             F2 "Awesome!"
-            hide FLaugh with dissolve
+            hide MNorm with dissolve
             
     F2 "Let's talk about it more later. I see the rest of the group coming."
-    show Karl
+    show KNorm
     with dissolve
     "Yet again, while talking to Matt, somehow Karl snuck in, sat down, and started on his lunch."
-    show Karl:
+    hide KNorm
+    show KSad with dissolve:
         xalign 0.1
         yalign 1.0
-    show Joseline:
+    show JoDisgust with dissolve:
         xalign 0.9
         yalign 1.0
     stop music fadeout 1.0
@@ -534,12 +587,19 @@ label afterLunch:
         "Karl should just move. We were going to sit here":
             $ bad = True
             MC "Karl, you should just move. These are our seats."
+            hide KSad
+            show KShock:
+                xalign 0.1
+                yalign 1.0
+            show JoScold:
+                xalign 0.9
+                yalign 1.0
             F1 "Yeah, Karl. Everybody wants you out because you just sit down without asking."
             F1 "You're just being straight up rude!"
-            hide Karl with dissolve
+            hide KShock with dissolve
             stop music
             "Karl picks up his lunch and leaves the lunchroom."
-            hide Joseline with dissolve
+            hide JoScold with dissolve
             "There’s a brief pause as the kids in the lunchroom watch him go, but then conversation resumes as normal."
             play music "School Theme.wav"
         
@@ -549,8 +609,8 @@ label afterLunch:
             F1 "Fine. There's a table over there."
             F1 "Getting into this same fight over and over isn't worth the stress, and he's not going to change his mind."
             F1 "We'll just sit over there from now on."
-            hide Joseline with dissolve
-            hide Karl with dissolve
+            hide JoDisgust with dissolve
+            hide KSad with dissolve
             stop music
             play music "School Theme.wav"
             "Joseline leads us to a table towards the back of the cafeteria, complaining about Karl the whole way."
@@ -560,22 +620,34 @@ label afterLunch:
             $ good = True
             stop music
             MC "Hey, wait. There's a table over there with enough seats for all of us."
+            hide JoDisgust
+            show JoMad:
+                xalign 0.9
+                yalign 1.0
             F1 "Wait, what? But I don't want to move."
             play music "School Theme.wav"
+            hide KSad
+            show KNorm:
+                xalign 0.1
+                yalign 1.0
             show MNorm with dissolve
             F2 "I'm down. Couldn't hurt to make some new friends."
             hide MNorm
-            show Jake with dissolve
+            show JNorm with dissolve
             F4 "Yeah! Karl seems like a pretty legit guy."
-            hide Jake
-            show FHappy with dissolve
+            hide JNorm
+            show FNorm with dissolve
             F3 "What a splendid idea! Karl, I'd love to hear your thoughts on Victorian literature?"
-            hide FHappy with dissolve
+            hide FNorm with dissolve
             VC "..."
+            hide JoMad
+            show JoNorm:
+                xalign 0.9
+                yalign 1.0
             F1 "Ugh, fine. If you all are okay with it, I guess I am too."
             F1 "Come on, Karl. We can all go sit together."
-            hide Joseline with dissolve
-            hide Karl with dissolve
+            hide JoNorm with dissolve
+            hide KNorm with dissolve
             "Together we all head over to the table near the back of the cafeteria with enough seats for all of us."
             "Karl looks up for the first time since he's joined us, with a small, shy smile on his face."
             "He also seems much happier, now that he's got some new friends. He fit in wonderfully at lunch and got along well with everyone, even Joseline."
@@ -603,7 +675,10 @@ label afterLunch:
     if bad:
         "From that day on, no one ever saw Karl at lunch anymore. Rumor has it he spends his lunch periods eating in the bathroom, alone, where no one can see his tears."
         
-        
+    #
+    # CHAPTER 2
+    #
+    
     play music "Title Theme 1.wav"
     scene bedroom
     with fade
@@ -639,7 +714,7 @@ label afterLunch:
 
     "The school day flies by as usual and it comes time for me to head to track practice with Jake."
     
-    show Jake
+    show JNorm
     with dissolve
     
     F4 "Hey [myname], I had the most lame day ever. Every class I had gave me mountains of homework and it's the second week of class."
@@ -664,13 +739,12 @@ label afterLunch:
             
     "A whole lot of bulky kids are huddled near the center of the track field chatting with each other. One kid is on his phone at the side, sitting on the ground estranged from the main group."
     
-    image Zeke = im.Scale("images/zeke temp.png", 720, 720)
-    show Zeke
+    show ZNorm
     with dissolve
     
     Z "Hey bros, wassup!  I’m Zeke and I’m the captain of the track team and the fastest person on the planet. What are your scroungy looking selves doing here? Ayy, I’m just kidding welcome to the team."
     
-    show Jake with dissolve:
+    show JNorm with dissolve:
         xalign .1
         yalign 1.0
     
@@ -686,12 +760,12 @@ label afterLunch:
     with fade
     
     
-    show Zeke
+    show ZNorm
     with dissolve
     
     Z "Nice practice guys. Let's cool down in here."
     
-    hide Zeke with dissolve
+    hide ZNorm with dissolve
     
     stop music fadeout 1.0
     
@@ -710,7 +784,7 @@ label afterLunch:
         "Head home with Jake.":
             MC "Jake let's head out. I’m tired let’s go back home together. I’ll walk to your house before heading home."
             
-            show Jake with dissolve
+            show JNorm with dissolve
             
             F4 "Sounds awesome dude! Wanna race to the school entrance?"
             
@@ -735,7 +809,7 @@ label afterLunch:
                 "Ask Zeke what happened that they were chanting about.":
                     MC "What happened back with the chanting?"
                     
-                    show Zeke with dissolve
+                    show ZNorm with dissolve
                     
                     Z "Yo bro, we were just having fun chatting with Sebastian. He’s TOTALLY our type of guy, right bros?"
                     
@@ -773,8 +847,7 @@ label afterLunch:
                     
                     scene School with fade
                     
-                    image Sebastian = im.Scale("images/sebastian temp.jpg", 720, 720)
-                    show Sebastian
+                    show SNorm
                     with dissolve
                     
                     SB "What do you want with me?"
@@ -845,7 +918,7 @@ label afterLunch:
     "That is what I would say if I were paid to learn."
     "Honestly I should really get paid for dealing with so much drama within the span of one week."
     "I wonder if Bastian will go through with Zeke’s prank. And if so should I stop him or just let things play out. "
-    "I'll finid out at school. No point being late."
+    "I'll find out at school. No point being late."
     
     stop music fadeout 1.0
     play music "School Theme.wav"
@@ -857,7 +930,7 @@ label afterLunch:
     "It’s only been a week, but I already feel like I’m stuck in a rut."
     "As I walk up to my locker I look around and see Fiora putting her books away in her locker and near her I see Bastian with a group of the track jockeys whispering to each other."
     
-    show Sebastian with dissolve
+    show SNorm with dissolve
     
     S1 "Hey you ready Bastian! This is your big moment!"
     S2 "Yeah! You do this and you’ll officially be one of us!"
@@ -866,7 +939,7 @@ label afterLunch:
     
     "Bastian walks over slowly to Fiora. As he reaches her Fiora looks up with a smile on her face unaware of the verbal abuse she’s about to receive."
     
-    show Fiora with dissolve:
+    show FNorm with dissolve:
         xalign 0.1
         yalign 1.0
     
@@ -882,7 +955,7 @@ label afterLunch:
         "Fiora’s smile quickly switches to a dejected frown. "
         
         "Intervene.":
-            $ good2 = true
+            $ good2 = True
             "I immediately walk up to Fiora and Bastian just before he spouts anymore blasphemy against Fiora’s pristine towel. "
             " I look at Bastian and then Fiora and grab the towel out of her hands and hand it to Bastian."
             MC "What he meant to say was that he wouldn’t want to dirty such a nice clean towel. Isn’t that right Bastian?"
@@ -894,18 +967,18 @@ label afterLunch:
             SB "That’d be awesome!"
             MC "Hehe ye. Looks like my job is done."
             
-            hide Fiora with dissolve
-            hide Sebastian with disolve
+            hide FNorm with dissolve
+            hide SNorm with dissolve
             
             "I walk over to the group of track jocks looking confused as to what’s happening and give them a stern look. "
             MC "Don’t just think someone like me is going to stay a bystander as you bully others into doing your bidding."
             
         "Avoid the drama.":
-            $bad2 = true
+            $ bad2 = True
             MC "Meh, not my problem. I wonder what they’re serving for lunch today? I hope it’s pizza pockets."
             
-            hide Fiora with dissolve
-            hide Sebastian with dissolve
+            hide FNorm with dissolve
+            hide SNorm with dissolve
             
             "Knowing it wasn’t my place to get involved with the situation. I walked past a crying Fiora and a depressed looking Bastian."
             "The track jockey spectators just kept laughing as Bastian laid it on thick. Who knew he had it in him to be so cruel."

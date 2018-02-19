@@ -26,6 +26,16 @@ default good = False
 default neutral = False
 default bad = False
 
+#image defines because I don't know why it's not working without these
+image FHappy = "FHappy.png"
+image FModest = "FModest.png"
+image FNorm = "FNorm.png"
+
+image MBored = "MBored.png"
+image MLaugh = "MLaugh.png"
+image MNorm = "MNorm.png"
+image MTalk = "MTalk.png"
+
 # The game starts here.
 label start:
     python:
@@ -88,19 +98,26 @@ label start:
     scene classroom
     with fade
     "I approach the class and my friend, Fiora, approaches me with a warm smiling face."
-    image Fiora = im.Scale("images/fiora temp.png", 720, 720)
-    show Fiora
+    #image Fiora = im.Scale("images/fiora temp.png", 720, 720)
+    show FHappy
     with dissolve
     
     F3 "Hey [myname]! I so glad I have class with you."
+    hide FHappy 
+    show FNorm
     F3 "I had such a wonderful summer. How was yours? Did you do anything special?"
     python:
         mysummer = renpy.input("What should I tell Fiora I did this summer?")
         mysummer = mysummer.strip()
     F3 "[mysummer]?"
+    hide FNorm 
+    show FHappy
     F3 "Sounds like a lot of fun!"
+    hide FHappy 
+    show FNorm
     F3 "Anyway, come on inside! The teacher is about to take attendance."
-    hide Fiora with dissolve
+    hide FNorm 
+    with dissolve
     
     TEACHER "Everyone take a seat. Let me take attendance."
     
@@ -117,20 +134,19 @@ label start:
     with dissolve
     
     TEACHER "Matt?"
-    image Matt = im.Scale("images/matt temp.png", 720, 720)
-    show Matt
+    show MNorm
     with dissolve
     
     F2 "Hi"
-    hide Matt
+    hide MNorm
     with dissolve
     
     TEACHER "Fiora?"
-    show Fiora
+    show FNorm
     with dissolve
     
     F3 "Present!"
-    hide Fiora
+    hide FNorm
     with dissolve
     
     TEACHER "Jake?"
@@ -161,13 +177,15 @@ label start:
     "Thank goodness! Now I can finally have some time to catch up with my friends and tell them some stories about my summer." 
     
     "I can see Matt waving me over to the table at the front of the cafeteria."
-    show Matt
+    show MNorm
     with dissolve
     
     MC "Hey! How was your summer?"
-    
+    hide MNorm 
+    show MLaugh
     F2 "It was great! I was able to fix up my AMX car over the summer with my dad. She's a real beauty!"
-    
+    hide MLaugh 
+    show MNorm
     F2 "How was your summer?"
     
     menu:
@@ -175,21 +193,24 @@ label start:
         
         "...was great!":
             
-            show Matt
             MC "My summer was great!"
+            hide MNorm 
+            show MLaugh
             F2 "Awesome!"
+            hide MLaugh 
+            show MTalk
             
         "... could've been better...":
             
-            show Matt
             MC "It could've been better..."
             F2 "Damn. Well hopefully this school year will be better."
+            hide MNorm 
+            show MTalk
             
 label after_summer:
     
-    show Matt
     F2 "Hey, I see the rest of the gang coming over here."
-    hide Matt
+    hide MTalk
     with dissolve
     F2 "Can you wave at them so they see us?"
     
@@ -260,17 +281,19 @@ label after_summer:
     #label development:
     #        "SKIPPED!"
 
-    show Fiora
+    show FNorm
     with dissolve
     
     F3 "Speaking of speed, have you guys noticed that this day feels like anything but speedy?"
     F3 "It feels like a marathon just to get through all these rules for every class."
+    hide FNorm 
+    show FHappy
     F3 "I just want to get home and relax in bed with some Jane Austen books. "
     
     "Jane Austen again? I swear, Fiora reads one of Jane Austen's books literally every day."
     "She's probably the most voracious reader in the whole world!"
 
-    hide Fiora
+    hide FHappy
     with dissolve
     
     "While we eat, I decide to talk to a couple of my friends about their day so far..."
@@ -318,11 +341,13 @@ label JoselineLunch:
         jump secondFriend
 
 label MattLunch:
-    show Matt with dissolve
+    show MBored with dissolve
     F2 "My day has been nothing but boring; the classes haven’t even shifted into 2nd gear yet."
     F2 "All we get are teachers who explain rules and then give a dumb icebreaker, even though I know half the kids."
+    hide MBored 
+    show MNorm
     F2 "I can’t wait to get home to the car to tweak a few things though."
-    hide Matt with dissolve
+    hide MNorm with dissolve
     $ MattTalk = True
     if lunchTalk:
         jump afterLunch
@@ -331,10 +356,12 @@ label MattLunch:
         jump secondFriend
     
 label FioraLunch:
-    show Fiora with dissolve
+    show FModest with dissolve
     F3 "English class was interesting, but when the teacher told us what books we were going to be reading I had already read every single one."
+    hide FModest 
+    show FHappy
     F3 "Guess my homework is going to be more on the light side this year!"
-    hide Fiora with dissolve
+    hide FHappy with dissolve
     $ FioraTalk = True
     if lunchTalk:
         jump afterLunch
@@ -456,37 +483,45 @@ label afterLunch:
     scene cafeteria with fade
     play music "School Theme.wav"
     "Lunch today is the leftover spaghetti and meatballs from dinner last night."
-    show Fiora:
+    show FNorm:
         xalign 0.1
         yalign 1.0
     "I see Fiora reading a 'Series of Unfortunate Events' book, and next to her is Matt."
-    show Matt:
+    show MNorm:
         xalign 0.9
         yalign 1.0
     "He's scarfing down some pizza with.. are those oreos and french fries?!"
     "He's always had such odd tastes..."
     "I strike up a conversation with Matt as I approach the table."
-    hide Fiora with dissolve
-    show Matt:
+    hide FNorm with dissolve
+    show MNorm:
         xalign 0.5
         yalign 1.0
     F2 "Hey bud!" 
     F2 "I fixed up the car with some new spark plugs."
     F2 "I was working on the AMX 'til midnight, but then my mom made me go to bed."
+    hide FNorm 
+    show FTalk
     F2 "Hey, do you wanna come over to my place after school and help me out with the car?"
     menu:
         "What should I do?"
         
         "Nah, I've got a lot of work to do. We can hang out another time.":
             MC "Sorry, I've got a lot of work I need to get done. But I can hang out this weekend!"
+            hide FTalk 
+            show FNorm
             F2 "Alright, sounds like a plan!"
+            hide FNorm 
+            with dissolve
             
         "I can get my work done another time.":
             MC "Sure! Sounds like a plan."
+            hide FTalk 
+            show FLaugh
             F2 "Awesome!"
+            hide FLaugh with dissolve
             
     F2 "Let's talk about it more later. I see the rest of the group coming."
-    hide Matt
     show Karl
     with dissolve
     "Yet again, while talking to Matt, somehow Karl snuck in, sat down, and started on his lunch."
@@ -538,15 +573,15 @@ label afterLunch:
             MC "Hey, wait. There's a table over there with enough seats for all of us."
             F1 "Wait, what? But I don't want to move."
             play music "School Theme.wav"
-            show Matt with dissolve
+            show MNorm with dissolve
             F2 "I'm down. Couldn't hurt to make some new friends."
-            hide Matt
+            hide MNorm
             show Jake with dissolve
             F4 "Yeah! Karl seems like a pretty legit guy."
             hide Jake
-            show Fiora with dissolve
+            show FHappy with dissolve
             F3 "What a splendid idea! Karl, I'd love to hear your thoughts on Victorian literature?"
-            hide Fiora with dissolve
+            hide FHappy with dissolve
             VC "..."
             F1 "Ugh, fine. If you all are okay with it, I guess I am too."
             F1 "Come on, Karl. We can all go sit together."

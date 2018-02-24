@@ -9,7 +9,7 @@ define F2 = Character("Matt")
 define F3 = Character("Fiora")
 define F4 = Character("Jake")
 define VC = Character("Karl")
-define SB = Character("Sebastian")
+define SB = Character("Bastian")
 define S1 = Character("Loud Jock")
 define S2 = Character("Obnoxious Jock")
 define CH = Character(None)
@@ -634,7 +634,7 @@ label afterLunch:
                         show JoDisgust:
                             xalign 0.9
                             yalign 1.0
-                        F1 "Ugh, fine. If you all are okay with it, I guess I am too."
+                        F1 "Ugh, fine. If you all are okay with it, I guess he can sit with us..."
                         show MNorm with dissolve
                         F2 "Come on, Karl. We can all go sit together. I can tell you all about my AMX car I've been working on!"
                         VC "AMX? What's that...?"
@@ -801,7 +801,7 @@ label afterLunch:
                     
                     show ZNorm with dissolve
                     
-                    Z "Yo bro, we were just having fun chatting with Sebastian. He’s TOTALLY our type of guy, right bros?"
+                    Z "Yo bro, we were just having fun chatting with Bastian. He’s TOTALLY our type of guy, right bros?"
                     
                     menu:
                     
@@ -809,11 +809,11 @@ label afterLunch:
                         
                         "Inquire further.":
                             MC "So what was the talk specifically about? He seemed in a hurry to get out of here."
-                            
+                            Z "Oh, that was Bastian running out just now."
+                            Z "What a joke. Considering how much of a track legend his older brother was, he’s so washed up."
+                            Z "We got him to send out some texts telling the girl he likes to meet him so he can dump her."
+                            Z "Maybe then he won’t be so glued to that phone during practice and start trying for once."
                             menu:
-                            
-                                Z "Oh we got him to send out some texts telling the girl he likes to meet him so he can dump her. Maybe then he won’t be so glued to that phone and start exercising."
-                                
                                 "Tell Zeke you dissaprove.":
                                     MC "Why are you messing with his life?"
                                     Z "Oh it will be so funny. Just wait for tomorrow."
@@ -822,8 +822,9 @@ label afterLunch:
                                     "I rushed out after Zeke but I guess we were already too late. Bastian had already gone home so it would be necessary to stop him before anything happened that he couldn’t take back."
                                     
                                 "Extract yourself from the conversation":
-                                    MC "Ok. I’m going to be going."
-                                    "I headed out back home, while being a little concerned about Bastian. I think he will be all right and won’t actually follow through."
+                                    MC "Ok. I’m going to get going."
+                                    "The track team antics aren't what I joined the team for."
+                                    "I'll just head home and try to stay out of this drama."
                             
                         "Sounds like nothing.":
                             MC "Ok just checking in. I’m gonna head out."
@@ -852,22 +853,24 @@ label afterLunch:
                             
                             menu:
                             
-                                SB "Well they told me to insult the girl I have a crush on since middle school in order to be a part of the team. I just so badly want to have a place to belong but I don’t want to insult the girl I like."
+                                SB "Well, they told me to insult the girl I've had a crush on since middle school in order to be a part of the team."
+                                SB "I know I'm no track star like my brother, but I really wanna work hard to get in shape and help the team."
+                                SB "My father is really pushing my brother's reputation on me, and I want to be able to live up to his expectations."
+                                SB "I just want to have a place to belong so badly, but I don’t want to insult the girl I like."
                             
                                 "Try to help.":
                                     MC "That sounds awful. Can I help you in anyway? "
                                     
                                     menu:
                                     
-                                        SB "It would be great if you could just tell “Fiora” that what I’m doing isn’t personal. I don’t think I have the heart to face her right now."
+                                        SB "It would be great if you could do something to help that still lets me stay on the track team. I don’t think I have the heart to face her right now."
                                         
                                         "Agree.":
                                             MC "You have my word."
                                             SB "Thank you. This means a lot."
                                             
                                         "Disagree.":
-                                            MC "What am I your personal cupid? Do it yourself."
-                                            SB "…"
+                                            MC "This seems like a personal problem that you should handle yourself."
                                             
                                             label secondChoiceLabel:
                                             
@@ -880,6 +883,9 @@ label afterLunch:
                                                 "Agree.":
                                                     MC "Fine."
                                                     SB "Thank you. This means a lot."
+                                                    SB "I told her to meet me at my locker on the second floor at the beginning of the school day."
+                                                    SB "It's locker number 248."
+                                                    "That's right outside homeroom. How convenient; helping Bastian won't make me late for class."
                                                     
                                                 "Disagree.":
                                                     MC "No way."
@@ -907,7 +913,7 @@ label afterLunch:
     "Another day, another a dollar."
     "That is what I would say if I were paid to learn."
     "Honestly I should really get paid for dealing with so much drama within the span of one week."
-    "I wonder if Bastian will go through with Zeke’s prank. And if so should I stop him or just let things play out. "
+    "I wonder if Bastian will go through with Zeke’s prank."
     "I'll find out at school. No point being late."
     
     stop music fadeout 1.0
@@ -918,7 +924,8 @@ label afterLunch:
     
     "I walked into school and traverse the crowded hallways as usual to get to my locker."
     "It’s only been a week, but I already feel like I’m stuck in a rut."
-    "As I walk up to my locker I look around and see Fiora putting her books away in her locker and near her I see Bastian with a group of the track jockeys whispering to each other."
+    "As I walk up to my locker, I look around and see Fiora putting her books away in her locker."
+    "Nearby I see Bastian with a few members of the track team whispering to each other."
     
     show SNorm with dissolve
     
@@ -927,7 +934,7 @@ label afterLunch:
     CH "One of us ! One of us! One of us!"
     SB "O...ok."
     
-    "Bastian walks over slowly to Fiora. As he reaches her Fiora looks up with a smile on her face unaware of the verbal abuse she’s about to receive."
+    "Bastian walks over slowly to Fiora. As he reaches her Fiora looks up with a smile on her face."
     
     show FNorm with dissolve:
         xalign 0.1
@@ -941,12 +948,12 @@ label afterLunch:
     
     menu:
         
-        "Fiora’s smile quickly switches to a dejected frown. "
+        "Fiora’s smile quickly switches to a dejected frown."
         
         "Intervene.":
             $ good2 = True
             "I immediately walk up to Fiora and Bastian just before he can say anything else hurtful to Fiora. "
-            " I look at Bastian and then Fiora and grab the towel out of her hands and hand it to Bastian."
+            "I look at Bastian and then Fiora and grab the towel out of her hands and hand it to Bastian."
             MC "What he meant to say was that he wouldn’t want to dirty such a nice clean towel. Isn’t that right Bastian?"
             "Bastian sighing with relief wipes his brow with Fiora’s towel "
             SB "Ye...yeah that’s right. "
@@ -984,6 +991,16 @@ label afterLunch:
         
     if bad and good2:
         "Later that day during lunch I walked up to the usual table. Bastian and Fiora were lhaving a conversation with Joseline, Matt and Jake."
+        
+    if good and bad2:
+        "Later that day during lunch everyone in our usual friend group was sitting at a table except for Fiora."
+        "Joseline said that she was crying in the girl’s bathroom and wouldn’t come out."
+        "Rumour has it that Bastian was the cause, but no one can ask him because he always goes home immediately after school even though he’s part of the track team now."
+        "At least Karl looked pretty happy today, now tha he finally has some friends to talk to."
+        "I think I made the right choice letting him into the group."
+        "He and Matt turned out to be a couple of car nerds, and Karl has been helping him out with his AMX."
+        "I wonder if the outcome would have been better if I was more active in stopping Bastian."
+
         
     if bad2:
         "Later that day during lunch everyone in our usual friend group was sitting at a table except for Fiora."

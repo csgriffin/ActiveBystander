@@ -159,7 +159,7 @@ label start:
     SB "Oh, so sorry! I totally didn't see you there!"
     hide SShock with dissolve
 
-    image classroom = im.Scale("images/classroom.jpg", 1920, 1080)
+    image classroom = im.Scale("images/classroom.png", 1920, 1080)
     scene classroom
     with fade
     "I approach the class and my friend, Fiora, approaches me with a warm smiling face."
@@ -723,7 +723,7 @@ label afterLunch:
             "Before I can mention to him that we have almost all of the same classes we arrive at the track field. Jake and I run over to meet the other members of the track team."
             
             
-    image campus = im.Scale("images/campus.jpg", 1920, 1080)
+    image campus = im.Scale("images/campus.png", 1920, 1080)
     scene campus
     with fade
             
@@ -850,13 +850,14 @@ label afterLunch:
                         
                         "Find out what happened.":
                             MC "What happened? You can tell me, I’m a freshman too."
+                            SB "Well, they told me to insult the girl I've had a crush on since middle school in order to be a part of the team."
+                            SB "I know I'm no track star like my brother, but I really wanna work hard to get in shape and help the team."
+                            SB "My father is really pushing my brother's reputation on me, and I want to be able to live up to his expectations."
+                            SB "I just want to have a place to belong so badly, but I don’t want to insult the girl I like."
                             
                             menu:
-                            
-                                SB "Well, they told me to insult the girl I've had a crush on since middle school in order to be a part of the team."
-                                SB "I know I'm no track star like my brother, but I really wanna work hard to get in shape and help the team."
-                                SB "My father is really pushing my brother's reputation on me, and I want to be able to live up to his expectations."
-                                SB "I just want to have a place to belong so badly, but I don’t want to insult the girl I like."
+                                "What should I do...?"
+                                
                             
                                 "Try to help.":
                                     MC "That sounds awful. Can I help you in anyway? "
@@ -913,8 +914,6 @@ label afterLunch:
     "Another day, another a dollar."
     "That is what I would say if I were paid to learn."
     "Honestly I should really get paid for dealing with so much drama within the span of one week."
-    "I wonder if Bastian will go through with Zeke’s prank."
-    "I'll find out at school. No point being late."
     
     stop music fadeout 1.0
     play music "School Theme.wav"
@@ -990,7 +989,7 @@ label afterLunch:
         "Later that day during lunch I walked up to the usual table and looked on smiling. Bastian and Fiora were laughing together while having a conversation with Joseline, Matt and Jake."
         
     if bad and good2:
-        "Later that day during lunch I walked up to the usual table. Bastian and Fiora were lhaving a conversation with Joseline, Matt and Jake."
+        "Later that day during lunch I walked up to the usual table. Bastian and Fiora were having a conversation with Joseline, Matt and Jake."
         
     if good and bad2:
         "Later that day during lunch everyone in our usual friend group was sitting at a table except for Fiora."

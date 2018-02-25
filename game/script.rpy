@@ -110,6 +110,7 @@ label start:
             "I can't be late on the first day of school!"
     
     scene bus
+    play sound "Bus_-_Horn.wav"
     with fade
     stop music fadeout 1.0
 
@@ -132,6 +133,7 @@ label start:
     hide JoNorm with dissolve
     
     show MNorm with dissolve
+    play sound "Greeting_Matt.wav"
     "And there's Matt. I wonder how much progress he's made on that car he was working on?"
     F2 "Hey, man! Hope to see you in class!"
     hide MNorm with dissolve
@@ -165,6 +167,7 @@ label start:
     "I approach the class and my friend, Fiora, approaches me with a warm smiling face."
     show FNorm
     with dissolve
+    play sound "Greeting_Fiora.wav"
     
     F3 "Hey [myname]! I am so glad I have class with you."
     F3 "I had such a wonderful summer. How was yours? Did you do anything special?"
@@ -174,6 +177,7 @@ label start:
         "sleeping":
             MC "I spent most of my summer sleeping..."
             F3 "Oh, you can be so lazy sometimes!"
+            play sound "Pout_Fiora.wav"
             
         "working":
             MC "I got a summer job. I spent a lot of my time working."
@@ -193,9 +197,9 @@ label start:
     "It looks like I scored the jackpot when it comes to homeroom placement!"
             
     TEACHER "Alright, now that everyone's here, let's get started..."
-    
+    play sound "teacher_sound_effect.wav"
     "The first class went on for an eternity, and by the time second period rolled around it became apparent my friends were also feeling the pain of coming back to school."
-    
+    play sound "school bell.wav"
     TEACHER "Alright, everyone, that's the bell. Take your things and head to the cafeteria."
     image cafeteria = im.Scale("images/cafeteria.jpg", 1920, 1080)
     scene cafeteria
@@ -206,6 +210,7 @@ label start:
     "I can see Matt waving me over to the table at the front of the cafeteria."
     show MNorm
     with dissolve
+    play sound "Greeting_Matt.wav"
     
     MC "Hey! How was your summer?"
     F2 "It was great! I was able to fix up my AMX car over the summer with my dad. She's a real beauty!"
@@ -271,6 +276,7 @@ label after_summer:
     show KSad:
         xalign 0.1
         yalign 1.0
+    play sound "Whine_Karl_1.wav"
     VC "I've already moved twice already, and I just unpacked my lunch. Sorry."
     
     hide JoScold
@@ -314,6 +320,7 @@ label after_summer:
 
     show FNorm
     with dissolve
+    play sound "Greeting_Fiora.wav"
     
     F3 "Speaking of speed, have you guys noticed that this day feels like anything but speedy?"
     F3 "It feels like a marathon just to get through all these rules for every class."
@@ -440,6 +447,7 @@ label secondFriend:
 label afterLunch:
     scene classroom with fade
     stop music fadeout 1.0
+    play sound "school bell.wav"
     "The bell rings, signaling the end of our lunch period, and we all head back to class."
     play music "Goodbye.wav"
     image School = im.Scale("images/school.png", 1920, 1080)
@@ -468,8 +476,10 @@ label afterLunch:
             "It takes a little extra effort to get the eggs and toast all ready in time, but it was worth it!"
     
     scene bus with fade
+    play sound "Bus_-_Horn.wav"
     stop music fadeout 1.0
     "The bus comes by at it's usual time and takes me to school."
+    play sound "school bell.wav"
     "The first half of my day is boring, but goes by quickly. Before I know it, the bell rings for lunch and I'm off to see my friends."
     
     scene cafeteria with fade
@@ -478,9 +488,11 @@ label afterLunch:
     show FNorm:
         xalign 0.1
         yalign 1.0
+    play sound "Greeting_Fiora.wav"
     show MNorm:
         xalign 0.9
         yalign 1.0
+    play sound "Greeting_Matt.wav"
     "I see Fiora reading a 'Series of Unfortunate Events' book, and next to her is Matt."
     "He's scarfing down some pizza with.. are those oreos and french fries?!"
     "He's always had such odd tastes..."
@@ -489,6 +501,7 @@ label afterLunch:
     show MNorm:
         xalign 0.5
         yalign 1.0
+    play sound "Greeting_Matt.wav"
     F2 "Hey bud!" 
     F2 "I fixed up the car with some new spark plugs."
     F2 "I was working on the AMX 'til midnight, but then my mom made me go to bed."
@@ -515,6 +528,7 @@ label afterLunch:
     show KSad with dissolve:
         xalign 0.1
         yalign 1.0
+    play sound "Whine_Karl_2.wav"
     show JoDisgust with dissolve:
         xalign 0.9
         yalign 1.0
@@ -532,6 +546,7 @@ label afterLunch:
         show KShock:
             xalign 0.1
             yalign 1.0
+        play sound "Whine_Karl_3.wav"
         hide JoDisgust
         show JoScold:
             xalign 0.9
@@ -555,6 +570,7 @@ label afterLunch:
                 show KShock:
                     xalign 0.1
                     yalign 1.0
+                play sound "Whine_Karl_2.wav"
                 hide JoDisgust
                 show JoScold:
                     xalign 0.9
@@ -590,10 +606,12 @@ label afterLunch:
                     yalign 1.0
                 F1 "Wait, what? But I don't want to move."
                 show MNorm with dissolve
+                play sound "Greeting_Matt.wav"
                 F2 "Also, we don't know anything about Karl. He could be super weird!"
                 F2 "No offense, Karl..."
                 hide MNorm with dissolve
                 show FNorm with dissolve
+                play sound "Greeting_Fiora.wav"
                 F3 "Are you sure you want to invite Karl to sit with us?"
                 hide FNorm
                 menu:
@@ -622,12 +640,15 @@ label afterLunch:
                             xalign 0.1
                             yalign 1.0
                         show MNorm with dissolve
+                        play sound "Greeting_Matt.wav"
                         F2 "Well, if you think so, I'm down. Couldn't hurt to make some new friends."
                         hide MNorm
                         show JNorm with dissolve
+                        play sound "Yeah_Jake.wav"
                         F4 "Yeah! I bet Karl's a pretty legit guy, once you get to know him."
                         hide JNorm
                         show FNorm with dissolve
+                        play sound "Greeting_Fiora.wav"
                         F3 "If you say so, [myname]. Karl, I'd love to hear your thoughts on Victorian literature."
                         hide FNorm with dissolve
                         hide JoMad
@@ -636,6 +657,7 @@ label afterLunch:
                             yalign 1.0
                         F1 "Ugh, fine. If you all are okay with it, I guess he can sit with us..."
                         show MNorm with dissolve
+                        play sound "Greeting_Matt.wav"
                         F2 "Come on, Karl. We can all go sit together. I can tell you all about my AMX car I've been working on!"
                         VC "AMX? What's that...?"
                         hide JoNorm with dissolve
@@ -690,6 +712,7 @@ label afterLunch:
             
     
     scene bus
+    play sound "Bus_-_Horn.wav"
     with fade
     stop music fadeout 1.0
 
@@ -938,6 +961,7 @@ label afterLunch:
     show FNorm with dissolve:
         xalign 0.1
         yalign 1.0
+    play sound "Greeting_Fiora.wav"
     
     F3 "Hi Bastian!  I haven’t seen you in awhile. How was your Summer?"
     "Bastian only looks on at Fiora sweaty and nervous as he tries to vocalize his thoughts."
@@ -1001,7 +1025,7 @@ label afterLunch:
         "I wonder if the outcome would have been better if I was more active in stopping Bastian."
 
         
-    if bad2:
+    if bad and bad2:
         "Later that day during lunch everyone in our usual friend group was sitting at a table except for Fiora."
         "Joseline said that she was crying in the girl’s bathroom and wouldn’t come out."
         "Rumour has it that Bastian was the cause, but no one can ask him because he always goes home immediately after school even though he’s part of the track team now."

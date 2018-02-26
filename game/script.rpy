@@ -928,8 +928,9 @@ label afterLunch:
     stop music fadeout 1.0
     "I go home for the night."
                             
-    label development:
-                            
+    #label development:
+    #label development:
+
     play music "Title Theme 1.wav"
     scene bedroom
     with fade
@@ -1025,10 +1026,23 @@ label afterLunch:
         "I wonder if the outcome would have been better if I was more active in stopping Bastian."
 
         
-    if bad and bad2:
+    if neutral and bad2:
         "Later that day during lunch everyone in our usual friend group was sitting at a table except for Fiora."
         "Joseline said that she was crying in the girl’s bathroom and wouldn’t come out."
         "Rumour has it that Bastian was the cause, but no one can ask him because he always goes home immediately after school even though he’s part of the track team now."
         "I wonder if the outcome would have been better if I was more active in stopping Bastian."
-    
+
+    if bad and bad2:
+        "A month has passed and the bullying at school has turned from bad to worse."
+        "People like Karl have been so isolated from social interaction that it is hard to tell whether they even come to school."
+        "Between physcial assaults, social isolation, and verbal abuse Karl has been the punching bag for most of the school."
+
+        show KNorm with dissolve
+
+        "Today however, I see him walk towards us at lunch instead of eating in the bathroom. I wonder what he is doing..."
+
+        scene black with dissolve
+        stop music
+        play sound "Bad_End.wav"
+
     return

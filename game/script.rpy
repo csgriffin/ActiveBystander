@@ -1007,14 +1007,19 @@ label afterLunch:
     stop music fadeout 1.0
         
     if good and good2:
+        image happyEnding = im.Scale("images/happy_ending.png", 1920, 1080)
+        scene happyEnding with fade
         "Later that day during lunch I walked up to the usual table and looked on smiling. Bastian and Fiora were laughing together and Karl was smiling while having a conversation with Joseline, Matt and Jake."
         "Old friends, new friends. High school is looking like it won't be so bad."
+        "The End."
         
     if neutral and good2:
         "Later that day during lunch I walked up to the usual table and looked on smiling. Bastian and Fiora were laughing together while having a conversation with Joseline, Matt and Jake."
+        "The End."
         
     if bad and good2:
         "Later that day during lunch I walked up to the usual table. Bastian and Fiora were having a conversation with Joseline, Matt and Jake."
+        "The End."
         
     if good and bad2:
         "Later that day during lunch everyone in our usual friend group was sitting at a table except for Fiora."
@@ -1024,6 +1029,7 @@ label afterLunch:
         "I think I made the right choice letting him into the group."
         "He and Matt turned out to be a couple of car nerds, and Karl has been helping him out with his AMX."
         "I wonder if the outcome would have been better if I was more active in stopping Bastian."
+        "The End."
 
         
     if neutral and bad2:
@@ -1031,6 +1037,7 @@ label afterLunch:
         "Joseline said that she was crying in the girl’s bathroom and wouldn’t come out."
         "Rumour has it that Bastian was the cause, but no one can ask him because he always goes home immediately after school even though he’s part of the track team now."
         "I wonder if the outcome would have been better if I was more active in stopping Bastian."
+        "The End."
 
     if bad and bad2:
         "A month has passed and the bullying at school has turned from bad to worse."
@@ -1044,5 +1051,7 @@ label afterLunch:
         scene black with dissolve
         stop music
         play sound "Bad_End.wav"
+
+        "The End."
 
     return
